@@ -16,9 +16,11 @@
 #include "xd75.h"
 
 // Fillers to make layering more clear
-//#define _______ KC_TRNS
-//#define ___T___ KC_TRNS
-//#define XXXXXXX KC_TRNS
+#define ______ KC_TRNS 
+#define FN_SPC LT(_FN, KC_SPC)
+#define TAPPING_TOGGLE 1
+//#define ___T___ ______
+//#define XXXXXXX ______
 
 // Layer shorthand
 #define _QW 0
@@ -34,7 +36,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-----------------|
  * | TAB    | Q      | W      | E      | R      | T      | [      | \      | ]      | Y      | U      | I      | O      | P      | '      |
  * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-----------------+--------|
- * | CAP LK | A      | S      | D      | F      | G      | HOME   | DEL    | PG UP  | H      | J      | K      | L      | ;      | ENTER  |
+ * | CTRL   | A      | S      | D      | F      | G      | HOME   | DEL    | PG UP  | H      | J      | K      | L      | ;      | ENTER  |
  * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------------------------+--------|
  * | LSHIFT | Z      | X      | C      | V      | B      | END    | UP     | PG DN  | N      | M      | ,      | .      | /      | RSHIFT |
  * |--------+--------+--------+--------+--------+-----------------+--------+--------+--------+--------+-----------------+--------+--------|
@@ -43,36 +45,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
  [_QW] = { /* QWERTY */
-  { KC_ESC,  KC_1,    KC_2,   KC_3,    KC_4,   KC_5,    KC_HOME, KC_UP, KC_PGUP, KC_6,    KC_7,   KC_8,    KC_9,    KC_0,    KC_BSPC },
-  { KC_TAB,  KC_Q,    KC_W,   KC_E,    KC_R,   KC_T,    KC_END,  KC_DEL, KC_PGDN, KC_Y,    KC_U,   KC_I,    KC_O,    KC_P,    KC_QUOT },
-  { M(0),    KC_A,    KC_S,   KC_D,    KC_F,   KC_G,    KC_GRV,  KC_EQL, KC_MINS, KC_H,    KC_J,   KC_K,    KC_L,    KC_SCLN, KC_ENT  },
-  { KC_LSFT, KC_Z,    KC_X,   KC_C,    KC_V,   KC_B,    KC_BSLS, KC_LBRC, KC_RBRC, KC_N,    KC_M,   KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT },
-  { KC_LCTL, KC_LGUI, KC_SPC, KC_LALT, KC_SPC, MO(_FN), KC_LEFT, KC_DOWN, KC_RGHT, MO(_FN), KC_SPC, KC_RALT, KC_SPC, KC_RGUI, KC_RCTL },
+  { KC_ESC,  KC_1,    KC_2,   KC_3,    KC_4,   KC_5,    KC_HOME, KC_UP,   KC_PGUP, KC_6,   KC_7,   KC_8,    KC_9,   KC_0,    KC_QUOT},
+  { KC_TAB,  KC_Q,    KC_W,   KC_E,    KC_R,   KC_T,    KC_BSLS, KC_RBRC, KC_LBRC, KC_Y,   KC_U,   KC_I,    KC_O,   KC_P,    KC_BSPC},
+  { KC_LCTL, KC_A,    KC_S,   KC_D,    KC_F,   KC_G,    KC_GRV,  KC_EQL,  KC_MINS, KC_H,   KC_J,   KC_K,    KC_L,   KC_SCLN, CTL_T(KC_ENT)},
+  { KC_LSFT, KC_Z,    KC_X,   KC_C,    KC_V,   KC_B,    KC_END,  KC_DEL,  KC_PGDN, KC_N,   KC_M,   KC_COMM, KC_DOT, KC_SLSH, KC_RSFT },
+  { TT(_LW), KC_LGUI, FN_SPC, KC_LALT, FN_SPC, FN_SPC,  KC_LEFT, KC_DOWN, KC_RGHT, FN_SPC, FN_SPC, KC_RALT, FN_SPC, KC_RGUI, TT(_LW)},
  },
 
  [_FN] = { /* FUNCTION */
-  { KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_PSCR,KC_SLCK,KC_PAUS,KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11,KC_F12 },
-  { KC_TRNS,KC_VOLU,KC_MPLY,KC_MNXT,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS},
-  { KC_TRNS,KC_VOLD,KC_MSTP,KC_MPRV,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT,KC_TRNS,KC_TRNS},
-  { KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS},
-  { KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS},
+  { KC_F1,  KC_F2,   KC_F3,   KC_F4,   KC_F5,  KC_F6,  KC_PSCR, KC_SLCK, KC_PAUS, KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11, KC_F12 },
+  { ______, KC_VOLU, KC_MPLY, KC_MNXT, ______, ______, ______,  ______,  ______,  ______,  ______,  ______, ______,  ______, KC_DEL},
+  { ______, KC_VOLD, KC_MSTP, KC_MPRV, ______, ______, ______,  ______,  ______,  KC_LEFT, KC_DOWN, KC_UP,  KC_RGHT, ______, ______},
+  { ______, ______,  ______,  ______,  ______, ______, ______,  ______,  ______,  ______,  ______,  ______, ______,  ______, ______},
+  { ______, ______,  ______,  ______,  ______, ______, ______,  ______,  ______,  ______,  ______,  ______, ______,  ______, ______},
  },
 
  [_LW] = { /* LOWERED */
-  { KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_NLCK,KC_CAPS,KC_SLCK,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS},
-  { KC_TRNS,KC_TRNS,KC_TRNS,KC_WH_L,KC_WH_U,KC_WH_R,KC_TRNS,RESET,  KC_TRNS,KC_TRNS,KC_TRNS,KC_MS_U,KC_TRNS,KC_TRNS,KC_TRNS},
-  { M(0),KC_TRNS,KC_TRNS,KC_BTN4,KC_WH_D,KC_BTN5,RGB_TOG,KC_TRNS,RGB_MOD,KC_TRNS,KC_MS_L,KC_MS_D,KC_MS_R,KC_TRNS,KC_TRNS},
-  { KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_BTN3,KC_BTN2,RGB_HUI,RGB_SAI,RGB_VAI,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS},
-  { KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_BTN1,KC_TRNS,RGB_HUD,RGB_SAD,RGB_VAD,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS},
+  { ______, ______,  ______,  ______,  ______,  ______,  KC_NLCK, KC_CAPS, KC_SLCK, ______,  ______, KC_PSLS, KC_PAST, KC_P0,   ______},
+  { ______, ______,  KC_BTN4, KC_MS_U, KC_BTN5, ______,  ______,  RESET,   ______,  KC_WH_U, KC_P7,  KC_P8,   KC_P9,   KC_PMNS, ______},
+  { ______, KC_WH_L, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_R, RGB_TOG, ______,  RGB_MOD, KC_WH_D, KC_P4,  KC_P5,   KC_P6,   KC_PPLS, CTL_T(KC_ENT)},
+  { ______, ______,  ______,  ______,  KC_BTN3, KC_BTN2, RGB_HUI, RGB_SAI, RGB_VAI, ______,  KC_P1,  KC_P2,   KC_P3,   KC_PDOT, ______},
+  { ______, ______,  ______,  ______,  ______,  KC_BTN1, RGB_HUD, RGB_SAD, RGB_VAD, ______,  ______, ______,  ______,  ______,  ______},
  },
 
- [_RS] = { /* RAISED */
-  { KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,  KC_F6,  KC_NLCK, KC_SLSH, KC_ASTR, KC_F7,   KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12 },
-  { KC_MSEL, KC_CALC, KC_TRNS,   KC_MAIL, KC_SPC, KC_SPC, KC_HOME, KC_TRNS,   KC_PGUP, KC_MINS, KC_SPC, KC_SPC, KC_TRNS,  KC_TRNS,  KC_TRNS },
-  { KC_MPRV, KC_MPLY, KC_MNXT, KC_MSTP, KC_SPC, KC_SPC, KC_TRNS,   KC_5,    KC_TRNS,   KC_PLUS, KC_SPC, KC_TRNS,  KC_SPC, KC_SPC, KC_SPC },
-  { KC_TRNS,   KC_MUTE, KC_TRNS,   KC_APP,  KC_SPC, KC_SPC, KC_END,  KC_TRNS,   KC_PGDN, KC_TRNS,   KC_SPC, KC_SPC, KC_SPC, KC_TRNS,  KC_TRNS },
-  { RESET,   KC_TRNS,   KC_TRNS,   KC_SPC,  KC_SPC, KC_SPC, KC_INS,  KC_TRNS,   KC_DEL,  KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS },
-}
 };
 
 // const uint16_t PROGMEM fn_actions[] = {
@@ -98,9 +93,6 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
                 layer_off(_LW);
 	    }
         }
-        //if (!record->event.pressed && timer_elapsed(start) < 150) {
-            //layer_on(_LW);
-        //}
         break;
     }
     return MACRO_NONE;
