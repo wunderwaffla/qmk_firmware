@@ -170,7 +170,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*
  * MIDI options
  */
-
+#define TAPPING_TOGGLE 1
 /* Prevent use of disabled MIDI features in the keymap */
 //#define MIDI_ENABLE_STRICT 1
 
