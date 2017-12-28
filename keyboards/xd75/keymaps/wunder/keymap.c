@@ -53,17 +53,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  },
 
  [_FN] = { /* FUNCTION */
-  { KC_F1,  KC_F2,   KC_F3,   KC_F4,   KC_F5,  KC_F6,  KC_PSCR, KC_SLCK, KC_PAUS, KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11, KC_F12 },
-  { ______, KC_VOLU, KC_MPLY, KC_MNXT, ______, ______, ______,  ______,  ______,  ______,  ______,  ______, ______,  ______, KC_DEL},
-  { ______, KC_VOLD, KC_MSTP, KC_MPRV, ______, ______, ______,  ______,  ______,  KC_LEFT, KC_DOWN, KC_UP,  KC_RGHT, ______, ______},
-  { ______, ______,  ______,  ______,  ______, ______, ______,  ______,  ______,  ______,  ______,  ______, ______,  ______, ______},
-  { ______, ______,  ______,  ______,  ______, ______, ______,  ______,  ______,  ______,  ______,  ______, ______,  ______, ______},
+  { KC_F1,  KC_F2,   KC_F3,   KC_F4,   KC_F5,  KC_F6,  KC_PSCR, KC_SLCK, KC_PAUS, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12 },
+  { ______, KC_GRV, KC_VOLU, KC_MPLY, KC_MNXT, ______, ______,  ______,  ______,  KC_PGUP, KC_HOME, KC_LBRC, KC_RBRC, KC_BSLS, KC_DEL},
+  { ______, ______, KC_VOLD, KC_MSTP, KC_MPRV, ______, ______,  ______,  ______,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_MINS, ______},
+  { ______, ______,  ______,  ______,  ______, ______, ______,  ______,  ______,  KC_PGDN, KC_END,  KC_EQL,  ______,  ______,  ______},
+  { ______, ______,  ______,  ______,  ______, ______, ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______},
  },
 
  [_LW] = { /* LOWERED */
   { ______, ______,  ______,  ______,  ______,  ______,  KC_NLCK, KC_CAPS, KC_SLCK, ______,  ______, KC_PSLS, KC_PAST, KC_P0,   ______},
   { ______, ______,  KC_BTN4, KC_MS_U, KC_BTN5, ______,  ______,  RESET,   ______,  KC_WH_U, KC_P7,  KC_P8,   KC_P9,   KC_PMNS, ______},
-  { ______, KC_WH_L, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_R, RGB_TOG, ______,  RGB_MOD, KC_WH_D, KC_P4,  KC_P5,   KC_P6,   KC_PPLS, CTL_T(KC_ENT)},
+  { ______, KC_WH_L, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_R, RGB_TOG, ______,  RGB_MOD, KC_WH_D, KC_P4,  KC_P5,   KC_P6,   KC_PPLS, CTL_T(KC_PENT)},
   { ______, ______,  ______,  ______,  KC_BTN3, KC_BTN2, RGB_HUI, RGB_SAI, RGB_VAI, ______,  KC_P1,  KC_P2,   KC_P3,   KC_PDOT, ______},
   { ______, ______,  ______,  ______,  ______,  KC_BTN1, RGB_HUD, RGB_SAD, RGB_VAD, ______,  ______, ______,  ______,  ______,  ______},
  },
