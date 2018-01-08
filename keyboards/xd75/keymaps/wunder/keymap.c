@@ -20,8 +20,11 @@
 // Fillers to make layering more clear
 #define ______ KC_TRNS 
 #define FN_SPC LT(_FN, KC_SPC)
-#define SFT_GRV SFT_T(KC_GRV)
+#define CTL_GRV CTL_T(KC_GRV)
+#define SFT_MEH SFT_T(KC_F14)
 #define SFT_MIN MT(MOD_RSFT, KC_MINS)
+#define CTL_ENT MT(MOD_RCTL, KC_ENT)
+#define CTL_PENT MT(MOD_RCTL, KC_PENT)
 
 // Layer shorthand
 #define _QW 0
@@ -45,27 +48,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
  [_QW] = { /* QWERTY */
-  { KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_HOME, KC_PGUP, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,        KC_F14},
-  { KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_RBRC, KC_LBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_QUOT,        KC_BSLS},
-  { KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_GRV,  KC_MINS, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, CTL_T(KC_ENT),  KC_EQL},
-  { SFT_GRV, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_END,  KC_PGDN, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SFT_MIN,        KC_DEL},
-  { KC_F14,  KC_LGUI, TT(_LW), KC_LALT, FN_SPC,  FN_SPC,  KC_LEFT, KC_RGHT, FN_SPC,  FN_SPC,  KC_RALT, TT(_LW), KC_RGUI, TT(_LW),        KC_DOWN},
+  { KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_HOME, KC_PGUP, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,  KC_F14},
+  { KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_RBRC, KC_LBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_QUOT,  KC_BSLS},
+  { CTL_GRV, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_GRV,  KC_MINS, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, CTL_ENT,  KC_EQL},
+  { SFT_MEH, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_END,  KC_PGDN, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SFT_MIN,  KC_DEL},
+  { KC_F14,  KC_LGUI, TT(_LW), KC_LALT, FN_SPC,  FN_SPC,  KC_LEFT, KC_RGHT, FN_SPC,  FN_SPC,  KC_RALT, TT(_LW), KC_RGUI, TT(_LW),  KC_DOWN},
  },
 
  [_FN] = { /* FUNCTION */
-  { KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   ______,  ______,  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,         ______ },
-  { ______,  KC_GRV,  KC_VOLU, KC_MPLY, KC_MNXT, ______,  ______,  ______,  KC_PGUP, KC_HOME, KC_LBRC, KC_RBRC, KC_BSLS, KC_DEL,         ______ },
-  { ______,  ______,  KC_VOLD, KC_MSTP, KC_MPRV, ______,  ______,  ______,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_MINS, ______,         ______ },
-  { ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  KC_PGDN, KC_END,  KC_EQL,  ______,  ______,  ______,         ______ },
-  { ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,         ______ },
+  { KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   ______,  ______,  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,   ______ },
+  { ______,  KC_GRV,  KC_VOLU, KC_MPLY, KC_MNXT, ______,  ______,  ______,  KC_PGUP, KC_HOME, KC_LBRC, KC_RBRC, KC_BSLS, KC_DEL,   ______ },
+  { ______,  ______,  KC_VOLD, KC_MSTP, KC_MPRV, ______,  ______,  ______,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, ______,  ______,   ______ },
+  { ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  KC_PGDN, KC_END,  KC_EQL,  ______,  ______,  ______,   ______ },
+  { ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,   ______ },
  },
 
  [_LW] = { /* LOWER */
-  { ______,  ______,  ______,  ______,  KC_SLCK, KC_PAUS, ______,  ______,  KC_PSCR, KC_NLCK, KC_PSLS, KC_PAST, KC_P0,   ______,         ______ },
-  { KC_CAPS, KC_BTN4, KC_MS_U, KC_BTN5, KC_WH_U, ______,  ______,  ______,  ______,  KC_P7,   KC_P8,   KC_P9,   KC_PMNS, ______,         RESET },
-  { ______,  KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, ______,  RGB_TOG, RGB_MOD, ______,  KC_P4,   KC_P5,   KC_P6,   KC_PPLS, CTL_T(KC_PENT), ______ },
-  { ______,  ______,  KC_WH_L, KC_WH_R, KC_BTN3, KC_BTN2, RGB_HUI, RGB_VAI, ______,  KC_P1,   KC_P2,   KC_P3,   KC_PDOT, ______,         RGB_SAI },
-  { ______,  ______,  ______,  ______,  KC_BTN1, ______,  RGB_HUD, RGB_VAD, ______,  ______,  ______,  ______,  ______,  ______,         RGB_SAD },
+  { ______,  ______,  ______,  ______,  KC_SLCK, KC_PAUS, ______,  ______,  KC_PSCR, KC_NLCK, KC_PSLS, KC_PAST, KC_P0,   ______,   ______ },
+  { KC_CAPS, KC_BTN4, KC_MS_U, KC_BTN5, KC_WH_U, ______,  ______,  ______,  ______,  KC_P7,   KC_P8,   KC_P9,   KC_PMNS, ______,   RESET },
+  { ______,  KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, ______,  RGB_TOG, RGB_MOD, ______,  KC_P4,   KC_P5,   KC_P6,   KC_PPLS, CTL_PENT, ______ },
+  { ______,  ______,  KC_WH_L, KC_WH_R, KC_BTN3, KC_BTN2, RGB_HUI, RGB_VAI, ______,  KC_P1,   KC_P2,   KC_P3,   KC_PDOT, ______,   RGB_SAI },
+  { ______,  ______,  ______,  ______,  KC_BTN1, ______,  RGB_HUD, RGB_VAD, ______,  ______,  ______,  ______,  ______,  ______,   RGB_SAD },
  },
 
 };
