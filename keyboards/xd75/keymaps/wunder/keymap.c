@@ -15,7 +15,18 @@
  */
 #include "xd75.h"
 
-#define TAPPING_TOGGLE 1
+enum planck_keycodes {
+  QWERTY = SAFE_RANGE,
+  COLEMAK,
+  DVORAK,
+  PLOVER,
+  LOWER,
+  RAISE,
+  BACKLIT,
+  EXT_PLV,
+  DYNAMIC_MACRO_RANGE,
+};
+#include "dynamic_macro.h"
 
 // Fillers to make layering more clear
 #define ______ KC_TRNS 
@@ -26,6 +37,11 @@
 #define SFT_MIN MT(MOD_RSFT, KC_MINS)
 #define CTL_ENT MT(MOD_RCTL, KC_ENT)
 #define CTL_PENT MT(MOD_RCTL, KC_PENT)
+#define M1_S DYN_REC_START1
+#define M2_S DYN_REC_START2
+#define M1_R DYN_MACRO_PLAY1
+#define M2_R DYN_MACRO_PLAY2
+#define M_STOP DYN_REC_STOP
 
 // Layer shorthand
 #define _QW 0
@@ -49,9 +65,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
  [_QW] = { /* QWERTY */
-  { KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_HOME, KC_PGUP, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,  KC_F14},
-  { KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_RBRC, KC_LBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_QUOT,  KC_BSLS},
-  { CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_GRV,  KC_MINS, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, CTL_ENT,  KC_EQL},
+  { KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_HOME, KC_PGUP, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,  M_STOP},
+  { KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    M1_S,    M2_S,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_QUOT,  KC_BSLS},
+  { CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    M1_R,    M2_R,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, CTL_ENT,  KC_EQL},
   { SFT_MEH, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_END,  KC_PGDN, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SFT_MIN,  KC_DEL},
   { KC_PAUS, KC_LGUI, TT(_LW), KC_LALT, FN_BSP,  FN_BSP,  KC_LALT, KC_RALT, FN_SPC,  FN_SPC,  KC_RALT, TT(_LW), KC_RGUI, TT(_LW),  KC_DOWN},
  },
@@ -74,6 +90,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+	if (!process_record_dynamic_macro(keycode, record)) {
+	      return false;
+	}
+	    return true;
+}
 // const uint16_t PROGMEM fn_actions[] = {
 // };
 
