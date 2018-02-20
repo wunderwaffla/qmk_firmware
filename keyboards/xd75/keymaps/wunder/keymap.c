@@ -15,6 +15,13 @@
  */
 #include "xd75.h"
 
+enum custom_keycodes {
+    M1 = SAFE_RANGE,
+    M2,
+    M3,
+    M4
+};
+
 enum planck_keycodes {
   QWERTY = SAFE_RANGE,
   COLEMAK,
@@ -65,11 +72,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
  [_QW] = { /* QWERTY */
-  { KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_HOME, KC_PGUP, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,  M_STOP},
-  { KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    M1_S,    M2_S,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_QUOT,  KC_BSLS},
-  { CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    M1_R,    M2_R,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, CTL_ENT,  KC_EQL},
-  { SFT_MEH, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_END,  KC_PGDN, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SFT_MIN,  KC_DEL},
-  { KC_PAUS, KC_LGUI, TT(_LW), KC_LGUI, FN_BSP,  TT(_LW), KC_LALT, KC_RALT, TT(_LW), FN_SPC,  KC_RGUI, TT(_LW), KC_RGUI, TT(_LW),  KC_DOWN},
+  { KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    M1,      M2,      KC_6,    KC_7,   KC_8,    KC_9,   KC_0,    KC_BSPC, M_STOP},
+  { KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    M1_S,    M2_S,    KC_Y,    KC_U,   KC_I,    KC_O,   KC_P,    KC_QUOT, KC_F20},
+  { CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    M1_R,    M2_R,    KC_H,    KC_J,   KC_K,    KC_L,   KC_SCLN, CTL_ENT, KC_F21},
+  { SFT_MEH, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    M3,      M4,      KC_N,    KC_M,   KC_COMM, KC_DOT, KC_SLSH, SFT_MIN, KC_F22},
+  { KC_PAUS, KC_F14,  KC_F15,  KC_LGUI, FN_BSP,  TT(_LW), KC_LALT, KC_RALT, TT(_LW), FN_SPC, KC_RGUI, KC_F16, KC_F17,  KC_F18,  KC_F19},
  },
 
  [_FN] = { /* FUNCTION */
@@ -90,12 +97,35 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+// 	    return true;
+// }
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-	if (!process_record_dynamic_macro(keycode, record)) {
-	      return false;
-	}
-	    return true;
-}
+
+  if (!process_record_dynamic_macro(keycode, record)) {
+    return false;
+  }
+
+  if (record->event.pressed) {
+    switch(keycode) {
+      case M1:
+        SEND_STRING("1"); // this is our macro!
+        return false; break;
+      case M2:
+        SEND_STRING("2"); // this is our macro!
+        return false; break;
+      case M3:
+        SEND_STRING("3"); // this is our macro!
+        return false; break;
+      case M4:
+        SEND_STRING("4"); // this is our macro!
+        return false; break;
+    }
+  }
+  return true;
+};
+
 // const uint16_t PROGMEM fn_actions[] = {
 // };
 
