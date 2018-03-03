@@ -2,19 +2,10 @@
 #include "action_layer.h"
 #include "eeconfig.h"
 
-#define TAPPING_TOGGLE 1
-
 #define _QWERTY 0
 #define _LW 1
 #define _FN 2
-#define _ADJUST 16
 
-//enum custom_keycodes {
-//  QWERTY = SAFE_RANGE,
-//  LW,
-//  FN,
-//  ADJUST,
-//};
 enum custom_keycodes {
     KC_M1 = SAFE_RANGE,
     KC_M2,
@@ -45,10 +36,6 @@ enum planck_keycodes {
 #define KC_ KC_TRNS
 #define _______ KC_TRNS
 
-//#define KC_LOWR LOWER
-//#define KC_RASE RAISE
-//#define KC_RST RESET
-//#define KC_BL_S BL_STEP
 #define KC_FN_SPC LT(_FN, KC_SPC)
 #define KC_FN_BSP LT(_FN, KC_BSPC)
 #define KC_CTL_ESC CTL_T(KC_ESC)
@@ -103,20 +90,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                  `----+----+----'        `----+----+----'
   ),
 
-//  [_ADJUST] = KEYMAP(
-//  //,--------+--------+--------+--------+--------+--------.                          ,--------+--------+--------+--------+--------+--------.
-//      _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-//  //|--------+--------+--------+--------+--------+--------|                          |--------+--------+--------+--------+--------+--------|
-//      RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, _______,                            _______, _______, _______, _______, _______, _______,
-//  //|--------+--------+--------+--------+--------+--------|                          |--------+--------+--------+--------+--------+--------|
-//      _______, DEBUG  , RGB_HUD, RGB_SAD, RGB_VAD, _______,                            _______, _______, _______, _______, _______, _______,
-//  //|--------+--------+--------+--------+--------+--------+--------.        ,--------|--------+--------+--------+--------+--------+--------|
-//      BL_STEP, RESET  , _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
-//  //`--------+--------+--------+----+---+--------+--------+--------/        \--------+--------+--------+---+----+--------+--------+--------'
-//                                      _______, _______, _______,                  _______, _______, _______
-//  //                                `--------+--------+--------'                `--------+--------+--------'
-//  )
-
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -127,70 +100,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
     switch(keycode) {
       case KC_M1:
-        SEND_STRING("1"); // this is our macro!
+        SEND_STRING("1");
         return false; break;
       case KC_M2:
-        SEND_STRING("2"); // this is our macro!
+        SEND_STRING("2");
         return false; break;
       case KC_M3:
-        SEND_STRING("3"); // this is our macro!
+        SEND_STRING("3");
         return false; break;
       case KC_M4:
-        SEND_STRING("4"); // this is our macro!
+        SEND_STRING("4");
         return false; break;
     }
   }
   return true;
 };
-
-// #ifdef AUDIO_ENABLE
-// float tone_qwerty[][2]     = SONG(QWERTY_SOUND);
-// #endif
-
-//void persistent_default_layer_set(uint16_t default_layer) {
-//  eeconfig_update_default_layer(default_layer);
-//  default_layer_set(default_layer);
-//}
-
-//bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-//  switch (keycode) {
-//    case QWERTY:
-//      if (record->event.pressed) {
-//        #ifdef AUDIO_ENABLE
-//          PLAY_SONG(tone_qwerty);
-//        #endif
-//        persistent_default_layer_set(1UL<<_QWERTY);
-//      }
-//      return false;
-//      break;
-//    case LW:
-//      if (record->event.pressed) {
-//        layer_on(_LW);
-//        update_tri_layer(_LW, _FN, _ADJUST);
-//      } else {
-//        layer_off(_LW);
-//        update_tri_layer(_LW, _FN, _ADJUST);
-//      }
-//      return false;
-//      break;
-//    case FN:
-//      if (record->event.pressed) {
-//        layer_on(_FN);
-//        update_tri_layer(_LW, _FN, _ADJUST);
-//      } else {
-//        layer_off(_FN);
-//        update_tri_layer(_LW, _FN, _ADJUST);
-//      }
-//      return false;
-//      break;
-//    case ADJUST:
-//      if (record->event.pressed) {
-//        layer_on(_ADJUST);
-//      } else {
-//        layer_off(_ADJUST);
-//      }
-//      return false;
-//      break;
-//  }
-//  return true;
-//}
