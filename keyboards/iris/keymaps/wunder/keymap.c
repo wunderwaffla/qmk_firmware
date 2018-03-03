@@ -4,8 +4,6 @@
 
 #define TAPPING_TOGGLE 1
 
-//extern keymap_config_t keymap_config;
-
 #define _QWERTY 0
 #define _LW 1
 #define _FN 2
@@ -17,7 +15,32 @@
 //  FN,
 //  ADJUST,
 //};
+enum custom_keycodes {
+    KC_M1 = SAFE_RANGE,
+    KC_M2,
+    KC_M3,
+    KC_M4
+};
 
+
+enum planck_keycodes {
+  QWERTY = SAFE_RANGE,
+  COLEMAK,
+  DVORAK,
+  PLOVER,
+  LOWER,
+  RAISE,
+  BACKLIT,
+  EXT_PLV,
+  DYNAMIC_MACRO_RANGE,
+};
+#include "dynamic_macro.h"
+
+#define KC_M1_S DYN_REC_START1
+#define KC_M2_S DYN_REC_START2
+#define KC_M1_R DYN_MACRO_PLAY1
+#define KC_M2_R DYN_MACRO_PLAY2
+#define KC_M_STOP DYN_REC_STOP
 
 #define KC_ KC_TRNS
 #define _______ KC_TRNS
@@ -54,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LW] = KC_KEYMAP(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-         ,    ,    ,INS ,SLCK,PAUS,               PSCR,NLCK,PSLS,PAST,P0  ,    ,
+         ,    ,    ,INS ,SLCK,PAUS,               PSCR,NLCK,PSLS,PAST, P0 ,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
      CAPS,BTN4,MS_U,BTN5,WH_U,    ,                   , P7 , P8 , P9 ,PMNS,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
@@ -68,13 +91,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_FN] = KC_KEYMAP(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-      F1 , F2 , F3 , F4 , F5 , F6,                 F7 , F8 , F9 ,F10 ,F11 , F12,
+      F1 , F2 , F3 , F4 , F5 , F6,                 F7 , F8 , F9 ,F10 ,F11 ,F12 ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,VOLU,MPLY,MNXT,    ,               PGUP,HOME,LBRC,RBRC,BSLS,DEL ,
+         ,M1_S,M2_S,M1_R,M2_R,M_STOP,             PGUP,HOME,LBRC,RBRC,    ,DEL ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,VOLD,MSTP,MPRV,    ,               LEFT,DOWN,UP  ,RGHT,    ,BSLS,
+         ,    ,    ,    ,    ,    ,               LEFT,DOWN, UP ,RGHT,BSLS,    ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,    ,         ,PGDN,END, EQL ,    ,    ,    ,
+         , M1 , M2 , M3 , M4 ,    ,    ,         ,PGDN,END, EQL ,    ,    ,    ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                            ,    ,    ,             ,    ,    
   //                  `----+----+----'        `----+----+----'
@@ -96,9 +119,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-#ifdef AUDIO_ENABLE
-float tone_qwerty[][2]     = SONG(QWERTY_SOUND);
-#endif
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (!process_record_dynamic_macro(keycode, record)) {
+    return false;
+  }
+
+  if (record->event.pressed) {
+    switch(keycode) {
+      case KC_M1:
+        SEND_STRING("1"); // this is our macro!
+        return false; break;
+      case KC_M2:
+        SEND_STRING("2"); // this is our macro!
+        return false; break;
+      case KC_M3:
+        SEND_STRING("3"); // this is our macro!
+        return false; break;
+      case KC_M4:
+        SEND_STRING("4"); // this is our macro!
+        return false; break;
+    }
+  }
+  return true;
+};
+
+// #ifdef AUDIO_ENABLE
+// float tone_qwerty[][2]     = SONG(QWERTY_SOUND);
+// #endif
 
 //void persistent_default_layer_set(uint16_t default_layer) {
 //  eeconfig_update_default_layer(default_layer);
