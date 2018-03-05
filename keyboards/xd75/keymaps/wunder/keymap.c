@@ -91,8 +91,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   { ______,  ______,  ______,  KC_INS,  KC_SLCK, KC_PAUS, ______,  ______,  KC_PSCR, KC_NLCK, KC_PSLS, KC_PAST, KC_P0,   ______,   ______ },
   { KC_CAPS, KC_BTN4, KC_MS_U, KC_BTN5, KC_WH_U, ______,  ______,  ______,  ______,  KC_P7,   KC_P8,   KC_P9,   KC_PMNS, ______,   ______ },
   { ______,  KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, ______,  RGB_TOG, RGB_MOD, ______,  KC_P4,   KC_P5,   KC_P6,   KC_PPLS, CTL_PENT, ______ },
-  { ______,  ______,  KC_WH_L, KC_WH_R, KC_BTN3, KC_BTN2, RGB_HUI, RGB_VAI, KC_BTN1, KC_P1,   KC_P2,   KC_P3,   KC_PDOT, ______,   ______ },
-  { ______,  ______,  ______,  ______,  ______,  ______,  RGB_HUD, RGB_VAD, ______,  ______,  ______,  ______,  ______,  ______,   RESET  },
+  { ______,  ______,  KC_WH_L, KC_WH_R, KC_BTN3, KC_BTN2, RGB_HUI, RGB_VAI, KC_BTN1, KC_P1,   KC_P2,   KC_P3,   KC_PDOT, ______,   RESET  },
+  { ______,  ______,  ______,  ______,  ______,  ______,  RGB_HUD, RGB_VAD, ______,  ______,  ______,  ______,  ______,  ______,   ______ },
  },
 
 };
