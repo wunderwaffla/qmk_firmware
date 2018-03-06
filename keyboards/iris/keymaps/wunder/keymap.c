@@ -100,7 +100,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
     switch(keycode) {
       case KC_M1:
-        SEND_STRING("1");
+        SEND_STRING("gotogit"SS_TAP(X_ENTER));
         return false; break;
       case KC_M2:
         SEND_STRING("2");
