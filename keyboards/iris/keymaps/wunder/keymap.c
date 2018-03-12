@@ -45,6 +45,7 @@ enum planck_keycodes {
 #define KC_CTL_ENT MT(MOD_RCTL, KC_ENT)
 #define KC_CTL_PENT MT(MOD_RCTL, KC_PENT)
 #define KC_LW TT(_LW)
+#define KC_FGUI GUI_T(KC_F2)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -59,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
      SFT_MEH, Z  , X  , C  , V  , B  ,LALT,  RALT, N  , M  ,COMM,DOT ,SLSH,SFT_MIN,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
-                       LGUI,FN_BSP,LW,          LW,FN_SPC,RGUI
+                       LGUI,FN_BSP,LW,          LW,FN_SPC,FGUI
   //                  `----+----+----'        `----+----+----'
   ),
 
@@ -103,7 +104,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING("gotogit"SS_TAP(X_ENTER));
         return false; break;
       case KC_M2:
-        SEND_STRING("2");
+        SEND_STRING("1234Aa");
         return false; break;
       case KC_M3:
         SEND_STRING("3");
