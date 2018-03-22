@@ -38,8 +38,11 @@ enum planck_keycodes {
 #define KC_RST RESET
 
 #define KC_FN_SPC LT(_FN, KC_SPC)
-#define KC_FN_BSP LT(_FN, KC_BSPC)
-#define KC_CTL_ESC CTL_T(KC_ESC)
+/* #define KC_FN_SPC LT(_FN, KC_SPC) */
+/* #define KC_FN_BSP LT(_FN, KC_BSPC) */
+#define KC_CTL_BSP CTL_T(KC_BSPC)
+/* #define KC_CTL_ESC CTL_T(KC_ESC) */
+#define KC_FN_ESC LT(_FN, KC_ESC)
 #define KC_SFT_MEH SFT_T(KC_F14)
 #define KC_SFT_MIN MT(MOD_RSFT, KC_MINS)
 #define KC_CTL_ENT MT(MOD_RCTL, KC_ENT)
@@ -56,11 +59,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
      TAB , Q  , W  , E  , R  , T  ,                Y  , U  , I  , O  , P  ,QUOT,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     CTL_ESC , A  , S  , D  , F  , G  ,            H  , J  , K  , L  ,SCLN,CTL_ENT,
+     FN_ESC , A  , S  , D  , F  , G  ,            H  , J  , K  , L  ,SCLN,CTL_ENT,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
      SFT_MEH, Z  , X  , C  , V  , B  ,LALT,  RALT, N  , M  ,COMM,DOT ,SLSH,SFT_MIN,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
-                       LGUI,FN_BSP,LW,          LW,FN_SPC,FGUI
+                      LGUI,CTL_BSP,LW,          LW,FN_SPC,FGUI
   //                  `----+----+----'        `----+----+----'
   ),
 
@@ -68,13 +71,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
       F1 , F2 , F3 , F4 , F5 , F6,                 F7 , F8 , F9 ,F10 ,F11 ,F12 ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,M1_S,M2_S,M1_R,M2_R,M_STOP,             PGUP,HOME,LBRC,RBRC,    ,DEL ,
+         ,M1_S,M2_S,M1_R,M2_R,M_STOP,             HOME, END,LBRC,RBRC,    ,DEL ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
          ,    ,    ,    ,    ,    ,               LEFT,DOWN, UP ,RGHT,BSLS,    ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-         , M1 , M2 , M3 , M4 ,    ,    ,         ,PGDN,END, EQL ,    ,    ,    ,
+         , M1 , M2 , M3 , M4 ,    ,    ,         ,PGUP,PGDN, EQL ,    ,    ,    ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
-                           ,    ,    ,             ,    ,    
+                           ,    ,    ,             ,    ,
   //                  `----+----+----'        `----+----+----'
   ),
 
