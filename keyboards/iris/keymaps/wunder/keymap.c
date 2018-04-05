@@ -38,10 +38,8 @@ enum planck_keycodes {
 #define KC_RST RESET
 
 #define KC_FN_SPC LT(_FN, KC_SPC)
-/* #define KC_FN_SPC LT(_FN, KC_SPC) */
-/* #define KC_FN_BSP LT(_FN, KC_BSPC) */
-#define KC_CTL_BSP CTL_T(KC_BSPC)
-/* #define KC_CTL_ESC CTL_T(KC_ESC) */
+#define KC_FN_BSP LT(_FN, KC_BSPC)
+#define KC_CTL_ESC CTL_T(KC_ESC)
 #define KC_FN_ESC LT(_FN, KC_ESC)
 #define KC_SFT_MEH SFT_T(KC_F14)
 #define KC_SFT_MIN MT(MOD_RSFT, KC_MINS)
@@ -59,11 +57,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
      TAB , Q  , W  , E  , R  , T  ,                Y  , U  , I  , O  , P  ,QUOT,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     FN_ESC , A  , S  , D  , F  , G  ,            H  , J  , K  , L  ,SCLN,CTL_ENT,
+     CTL_ESC , A  , S  , D  , F  , G  ,            H  , J  , K  , L  ,SCLN,CTL_ENT,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
      SFT_MEH, Z  , X  , C  , V  , B  ,LALT,  RALT, N  , M  ,COMM,DOT ,SLSH,SFT_MIN,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
-                      LGUI,CTL_BSP,LW,          LW,FN_SPC,FGUI
+                      LGUI,FN_BSP,LW,          LW,FN_SPC,FGUI
   //                  `----+----+----'        `----+----+----'
   ),
 
@@ -113,7 +111,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING("3");
         return false; break;
       case KC_M4:
-        SEND_STRING("4");
+        SEND_STRING(SS_LSFT("ZQ"));
         return false; break;
     }
   }
