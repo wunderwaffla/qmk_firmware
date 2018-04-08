@@ -36,7 +36,7 @@ enum planck_keycodes {
 #include "dynamic_macro.h"
 
 // Fillers to make layering more clear
-#define ______ KC_TRNS 
+#define ______ KC_TRNS
 #define FN_SPC LT(_FN, KC_SPC)
 #define FN_BSP LT(_FN, KC_BSPC)
 #define CTL_ESC CTL_T(KC_ESC)
@@ -49,6 +49,7 @@ enum planck_keycodes {
 #define M1_R DYN_MACRO_PLAY1
 #define M2_R DYN_MACRO_PLAY2
 #define M_STOP DYN_REC_STOP
+#define F_GUI MT(MOD_RGUI, KC_F2)
 
 // Layer shorthand
 #define _QW 0
@@ -76,14 +77,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   { KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    M1_S,    M2_S,    KC_Y,    KC_U,   KC_I,    KC_O,   KC_P,    KC_QUOT, KC_F20 },
   { CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    M1_R,    M2_R,    KC_H,    KC_J,   KC_K,    KC_L,   KC_SCLN, CTL_ENT, KC_F21 },
   { SFT_MEH, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    M3,      M4,      KC_N,    KC_M,   KC_COMM, KC_DOT, KC_SLSH, SFT_MIN, KC_F22 },
-  { KC_PAUS, KC_F23,  KC_F15,  KC_LGUI, FN_BSP,  TT(_LW), KC_LALT, KC_RALT, TT(_LW), FN_SPC, KC_RGUI, KC_F16, KC_F17,  KC_F18,  KC_F19 },
+  { KC_PAUS, KC_F23,  KC_F15,  KC_LGUI, FN_BSP,  TT(_LW), KC_LALT, KC_RALT, TT(_LW), FN_SPC, F_GUI,   KC_F16, KC_F17,  KC_F18,  KC_F19 },
  },
 
  [_FN] = { /* FUNCTION */
   { KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   ______,  ______,  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,   ______ },
   { ______,  ______,  KC_VOLU, KC_MPLY, KC_MNXT, ______,  ______,  ______,  KC_HOME, KC_END,KC_LBRC, KC_RBRC, ______,  KC_DEL,   ______ },
   { ______,  ______,  KC_VOLD, KC_MSTP, KC_MPRV, ______,  ______,  ______,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_BSLS, ______,   ______ },
-  { ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  KC_PGUP, KC_PGDN,  KC_EQL,  ______,  ______,  ______,   ______ },
+  { ______,  M1,      M2,      M3,      M4,      ______,  ______,  ______,  KC_PGUP, KC_PGDN,  KC_EQL,  ______,  ______,  ______,   ______ },
   { ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,   ______ },
  },
 
@@ -119,7 +120,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING("3"); // this is our macro!
         return false; break;
       case M4:
-        SEND_STRING("4"); // this is our macro!
+        SEND_STRING(SS_LSFT("ZQ"));
         return false; break;
     }
   }
@@ -131,10 +132,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 // static uint16_t start;
 
-// const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) 
+// const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 // {
     // switch(id) {
-        // case 0:   
+        // case 0:
         // if (record->event.pressed) {
             // start = timer_read();
             // register_code(KC_LCTL);
