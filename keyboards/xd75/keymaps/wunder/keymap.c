@@ -19,7 +19,8 @@ enum custom_keycodes {
     M1 = SAFE_RANGE,
     M2,
     M3,
-    M4
+    M4,
+    M5
 };
 
 enum planck_keycodes {
@@ -73,27 +74,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
  [_QW] = { /* QWERTY */
-  { KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    M1,      M2,      KC_6,    KC_7,   KC_8,    KC_9,    KC_0,    KC_BSPC, M_STOP },
-  { KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    M1_S,    M2_S,    KC_Y,    KC_U,   KC_I,    KC_O,    KC_P,    KC_QUOT, KC_PGUP},
-  { CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    M1_R,    M2_R,    KC_H,    KC_J,   KC_K,    KC_L,    KC_SCLN, CTL_ENT, KC_PGDN},
-  { SFT_MEH, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    M3,      M4,      KC_N,    KC_M,   KC_COMM, KC_DOT,  KC_SLSH, SFT_MIN, KC_F22 },
+  { KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    ______,  ______,  KC_6,    KC_7,   KC_8,    KC_9,    KC_0,    KC_HOME, KC_END  },
+  { KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    ______,  ______,  KC_Y,    KC_U,   KC_I,    KC_O,    KC_P,    KC_QUOT, KC_PGUP },
+  { CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    ______,  ______,  KC_H,    KC_J,   KC_K,    KC_L,    KC_SCLN, CTL_ENT, KC_PGDN },
+  { SFT_MEH, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    ______,  ______,  KC_N,    KC_M,   KC_COMM, KC_DOT,  KC_SLSH, SFT_MIN, KC_F22  },
   { KC_PAUS, KC_F23,  KC_F15,  KC_LGUI, FN_BSP,  TT(_LW), KC_LALT, KC_RALT, TT(_LW), FN_SPC, F_GUI,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT },
  },
 
  [_FN] = { /* FUNCTION */
   { KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   ______,  ______,  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,   ______ },
-  { ______,  ______,  KC_VOLU, KC_MPLY, KC_MNXT, ______,  ______,  ______,  KC_HOME, KC_END,  KC_LBRC, KC_RBRC, ______,  KC_DEL,   ______ },
-  { ______,  ______,  KC_VOLD, KC_MSTP, KC_MPRV, ______,  ______,  ______,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_BSLS, ______,   ______ },
-  { ______,  M1,      M2,      M3,      M4,      ______,  ______,  ______,  KC_PGUP, KC_PGDN, KC_EQL,  ______,  ______,  ______,   ______ },
+  { ______,  M1_S,    M2_S,    M1_R,    M2_R,    M_STOP,  ______,  ______,  KC_HOME, KC_END,  KC_LBRC, KC_RBRC, ______,  KC_DEL,   ______ },
+  { ______,  KC_VOLD, KC_VOLU, KC_MPRV, KC_MNXT, KC_MPLY, ______,  ______,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_BSLS, ______,   ______ },
+  { ______,  M1,      M2,      M3,      M4,      M5,      ______,  ______,  KC_PGUP, KC_PGDN, KC_EQL,  ______,  ______,  ______,   ______ },
   { ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,   ______ },
  },
 
  [_LW] = { /* LOWER */
   { ______,  ______,  ______,  KC_INS,  KC_SLCK, KC_PAUS, ______,  ______,  KC_PSCR, KC_NLCK, KC_PSLS, KC_PAST, KC_P0,   ______,   ______ },
   { KC_CAPS, KC_BTN4, KC_MS_U, KC_BTN5, KC_WH_U, ______,  RESET,   ______,  ______,  KC_P7,   KC_P8,   KC_P9,   KC_PMNS, ______,   ______ },
-  { ______,  KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, ______,  RGB_TOG, RGB_MOD, ______,  KC_P4,   KC_P5,   KC_P6,   KC_PPLS, CTL_PENT, ______ },
-  { ______,  ______,  KC_WH_L, KC_WH_R, KC_BTN3, KC_BTN2, RGB_HUI, RGB_VAI, KC_BTN1, KC_P1,   KC_P2,   KC_P3,   KC_PDOT, ______,   ______ },
-  { ______,  ______,  ______,  ______,  ______,  ______,  RGB_HUD, RGB_VAD, ______,  ______,  ______,  ______,  ______,  ______,   ______ },
+  { ______,  KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, ______,  ______,  ______,  ______,  KC_P4,   KC_P5,   KC_P6,   KC_PPLS, CTL_PENT, ______ },
+  { ______,  ______,  KC_WH_L, KC_WH_R, KC_BTN3, KC_BTN2, ______,  ______,  KC_BTN1, KC_P1,   KC_P2,   KC_P3,   KC_PDOT, ______,   ______ },
+  { ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,   ______ },
  },
 
 };
@@ -111,16 +112,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
     switch(keycode) {
       case M1:
-        SEND_STRING("gotogit"SS_TAP(X_ENTER)); // this is our macro!
+        SEND_STRING("gotogit"SS_TAP(X_ENTER));
         return false; break;
       case M2:
-        SEND_STRING("2"); // this is our macro!
+        SEND_STRING("@evalink.test");
         return false; break;
       case M3:
-        SEND_STRING("3"); // this is our macro!
+        SEND_STRING("1234Aa"SS_TAP(X_ENTER));
         return false; break;
       case M4:
         SEND_STRING(SS_LSFT("ZQ"));
+        return false; break;
+      case M5:
+        SEND_STRING(SS_LSFT("ZZ"));
         return false; break;
     }
   }
