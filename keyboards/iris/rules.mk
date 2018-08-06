@@ -1,8 +1,3 @@
-SRC += matrix.c \
-	   i2c.c \
-	   split_util.c \
-	   serial.c
-
 # MCU name
 #MCU = at90usb1287
 MCU = atmega32u4
@@ -70,6 +65,6 @@ USE_I2C = yes
 SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
 AUTO_SHIFT_ENABLE = yes
 
-CUSTOM_MATRIX = yes
+SPLIT_KEYBOARD = yes
 
 DEFAULT_FOLDER = iris/rev2
