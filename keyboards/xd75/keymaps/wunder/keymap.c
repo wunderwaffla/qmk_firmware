@@ -13,27 +13,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "xd75.h"
 
-enum custom_keycodes {
-    M1 = SAFE_RANGE,
-    M2,
-    M3,
-    M4,
-    M5
+enum custom_layers {
+  _QW,
+  _LW,
+  _FN,
+  _GAME,
 };
 
-enum planck_keycodes {
+enum custom_keycodes {
   QWERTY = SAFE_RANGE,
-  COLEMAK,
-  DVORAK,
-  PLOVER,
-  LOWER,
-  RAISE,
-  BACKLIT,
-  EXT_PLV,
+  GAME,
+  M1,
+  M2,
+  M3,
+  M4,
+  M5,
   DYNAMIC_MACRO_RANGE,
 };
+
 #include "dynamic_macro.h"
 
 // Fillers to make layering more clear
@@ -51,11 +51,6 @@ enum planck_keycodes {
 #define M2_R DYN_MACRO_PLAY2
 #define M_STOP DYN_REC_STOP
 #define F_GUI MT(MOD_RGUI, KC_F2)
-
-// Layer shorthand
-#define _QW 0
-#define _FN 1
-#define _LW 2
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -77,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   { KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    ______,  ______,  KC_6,    KC_7,   KC_8,    KC_9,    KC_0,    KC_HOME, KC_END  },
   { KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    ______,  ______,  KC_Y,    KC_U,   KC_I,    KC_O,    KC_P,    KC_QUOT, KC_PGUP },
   { CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    ______,  ______,  KC_H,    KC_J,   KC_K,    KC_L,    KC_SCLN, CTL_ENT, KC_PGDN },
-  { SFT_MEH, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    ______,  ______,  KC_N,    KC_M,   KC_COMM, KC_DOT,  KC_SLSH, SFT_MIN, KC_F22  },
+  { SFT_MEH, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    ______,  ______,  KC_N,    KC_M,   KC_COMM, KC_DOT,  KC_SLSH, SFT_MIN, KC_F2   },
   { KC_PAUS, KC_F23,  KC_F15,  KC_LGUI, FN_BSP,  TT(_LW), KC_LALT, KC_RALT, TT(_LW), FN_SPC, F_GUI,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT },
  },
 
@@ -90,11 +85,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  },
 
  [_LW] = { /* LOWER */
-  { ______,  ______,  ______,  KC_INS,  KC_SLCK, KC_PAUS, ______,  ______,  KC_PSCR, KC_NLCK, KC_PSLS, KC_PAST, KC_P0,   ______,   ______ },
-  { KC_CAPS, KC_BTN4, KC_MS_U, KC_BTN5, KC_WH_U, ______,  RESET,   ______,  ______,  KC_P7,   KC_P8,   KC_P9,   KC_PMNS, ______,   ______ },
-  { ______,  KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, ______,  ______,  ______,  ______,  KC_P4,   KC_P5,   KC_P6,   KC_PPLS, CTL_PENT, ______ },
-  { ______,  ______,  KC_WH_L, KC_WH_R, KC_BTN3, KC_BTN2, ______,  BL_STEP, KC_BTN1, KC_P1,   KC_P2,   KC_P3,   KC_PDOT, ______,   ______ },
-  { ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,   ______ },
+  { ______,  ______,  ______,  KC_INS,  KC_SLCK, KC_PAUS, GAME,   ______,  KC_PSCR, KC_NLCK, KC_PSLS, KC_PAST, KC_P0,   ______,   ______ },
+  { KC_CAPS, KC_BTN4, KC_MS_U, KC_BTN5, KC_WH_U, ______,  RESET,  ______,  ______,  KC_P7,   KC_P8,   KC_P9,   KC_PMNS, ______,   ______ },
+  { ______,  KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, ______,  ______, ______,  ______,  KC_P4,   KC_P5,   KC_P6,   KC_PPLS, CTL_PENT, ______ },
+  { ______,  ______,  KC_WH_L, KC_WH_R, KC_BTN3, KC_BTN2, ______, BL_STEP, KC_BTN1, KC_P1,   KC_P2,   KC_P3,   KC_PDOT, ______,   ______ },
+  { ______,  ______,  ______,  ______,  ______,  ______,  ______, ______,  ______,  ______,  ______,  ______,  ______,  ______,   ______ },
+ },
+
+ [_GAME] = { /* GAMEZZ */
+  { CTL_ESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,   QWERTY,  ______,  KC_6,    KC_7,   KC_8,    KC_9,    KC_0,    KC_HOME, KC_END  },
+  { KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,   ______,  ______,  KC_Y,    KC_U,   KC_I,    KC_O,    KC_P,    KC_QUOT, KC_PGUP },
+  { KC_GRV,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,   ______,  ______,  KC_H,    KC_J,   KC_K,    KC_L,    KC_SCLN, CTL_ENT, KC_PGDN },
+  { SFT_MEH, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   ______,  ______,  KC_N,    KC_M,   KC_COMM, KC_DOT,  KC_SLSH, SFT_MIN, KC_F2   },
+  { KC_PAUS, KC_F23,  KC_F15,  KC_LGUI, FN_BSP,  FN_SPC, KC_LALT, KC_RALT, TT(_LW), FN_SPC, F_GUI,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT },
  },
 
 };
@@ -126,53 +129,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case M5:
         SEND_STRING(SS_LSFT("ZZ"));
         return false; break;
+      case GAME:
+        if (record->event.pressed) {
+          layer_off(_FN);
+          layer_off(_LW);
+          layer_on(_GAME);
+        } return false; break;
+      case QWERTY:
+        if (record->event.pressed) {
+          layer_off(_GAME);
+        } return false; break;
     }
   }
   return true;
 };
-
-// const uint16_t PROGMEM fn_actions[] = {
-// };
-
-// static uint16_t start;
-
-// const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
-// {
-    // switch(id) {
-        // case 0:
-        // if (record->event.pressed) {
-            // start = timer_read();
-            // register_code(KC_LCTL);
-        // } else {
-    	    // uint8_t layer;
-    	    // layer = biton32(layer_state);  // get the current layer
-            // unregister_code(KC_LCTL);
-            // if (timer_elapsed(start) < 150 && layer != _LW) {
-                // layer_on(_LW);
-            // }
-            // if (timer_elapsed(start) < 150 && layer == _LW) {
-                // layer_off(_LW);
-	    // }
-        // }
-        // break;
-    // }
-    // return MACRO_NONE;
-// };
-
-//const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
-//{
-  // MACRODOWN only works in this function
-      // switch(id) {
-        // case 0:
-          // if (record->event.pressed) {
-            // register_code(KC_RSFT);
-            // #ifdef BACKLIGHT_ENABLE
-              // backlight_step();
-            // #endif
-          // } else {
-            // unregister_code(KC_RSFT);
-          // }
-        // break;
-      // }
-    // return MACRO_NONE;
-// };
