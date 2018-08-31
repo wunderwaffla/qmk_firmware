@@ -41,7 +41,7 @@ enum custom_keycodes {
 #define FN_SPC LT(_FN, KC_SPC)
 #define FN_BSP LT(_FN, KC_BSPC)
 #define CTL_ESC CTL_T(KC_ESC)
-#define SFT_MEH SFT_T(KC_F14)
+#define SFT_MEH SFT_T(KC_PAUSE)
 #define SFT_MIN MT(MOD_RSFT, KC_MINS)
 #define CTL_ENT MT(MOD_RCTL, KC_ENT)
 #define CTL_PENT MT(MOD_RCTL, KC_PENT)
@@ -97,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   { KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,   ______,  ______,  KC_Y,    KC_U,   KC_I,    KC_O,    KC_P,    KC_QUOT, KC_PGUP },
   { KC_GRV,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,   ______,  ______,  KC_H,    KC_J,   KC_K,    KC_L,    KC_SCLN, CTL_ENT, KC_PGDN },
   { SFT_MEH, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   ______,  ______,  KC_N,    KC_M,   KC_COMM, KC_DOT,  KC_SLSH, SFT_MIN, KC_F2   },
-  { KC_PAUS, KC_F23,  KC_F15,  KC_LGUI, FN_BSP,  FN_SPC, KC_LALT, KC_RALT, TT(_LW), FN_SPC, F_GUI,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT },
+  { KC_PAUS, KC_F23,  KC_F15,  KC_LGUI, KC_BSPC, KC_SPC, KC_LALT, KC_RALT, TT(_LW), FN_SPC, F_GUI,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT },
  },
 
 };
