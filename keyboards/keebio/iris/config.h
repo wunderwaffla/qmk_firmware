@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define TAPPING_TOGGLE 1
 #define DEBOUNCING_DELAY 5
-#define TAPPING_TERM 100
+#define TAPPING_TERM 200
 
 #include "config_common.h"
 
