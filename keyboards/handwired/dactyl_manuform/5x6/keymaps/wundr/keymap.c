@@ -48,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                     KC_LBRC, KC_RBRC,                                              KC_PGUP, KC_PGDN,
                              FGUI,    FN_BSP,                        FN_SPC,  GUIGO,
                              KC_TAB,  LW_SPC,                        LW_SPC,  M2,
-                             KC_BSPC, KC_RALT,                        KC_LALT, KC_LALT
+                             KC_BSPC, KC_RALT,                       KC_LALT, KC_LALT
   ),
 
   [_FN] = LAYOUT_5x6(

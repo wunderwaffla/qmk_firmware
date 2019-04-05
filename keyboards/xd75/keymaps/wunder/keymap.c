@@ -34,6 +34,7 @@ enum custom_keycodes {
   M6,
   M7,
   M8,
+  M9,
   DYNAMIC_MACRO_RANGE,
 };
 
@@ -41,55 +42,66 @@ enum custom_keycodes {
 
 // Fillers to make layering more clear
 #define ______ KC_TRNS
-#define FN_SPC LT(_FN, KC_SPC)
-#define FN_BSP LT(_FN, KC_BSPC)
-#define CTL_ESC CTL_T(KC_ESC)
-#define SFT_MEH SFT_T(KC_PAUSE)
-#define SFT_MIN MT(MOD_RSFT, KC_MINS)
-#define CTL_ENT MT(MOD_RCTL, KC_ENT)
-#define CTL_PENT MT(MOD_RCTL, KC_PENT)
+/* #define FN_SPC LT(_FN, KC_SPC) */
+/* #define FN_BSP LT(_FN, KC_BSPC) */
+/* #define CTL_ESC CTL_T(KC_ESC) */
+/* #define SFT_MEH SFT_T(KC_PAUSE) */
+/* #define SFT_MIN MT(MOD_RSFT, KC_MINS) */
+/* #define CTL_ENT MT(MOD_RCTL, KC_ENT) */
+/* #define CTL_PENT MT(MOD_RCTL, KC_PENT) */
+/* #define F_GUI MT(MOD_RGUI, KC_F2) */
+/* #define LW LT(_LW, KC_SPC) */
+
 #define M1_S DYN_REC_START1
 #define M2_S DYN_REC_START2
 #define M1_R DYN_MACRO_PLAY1
 #define M2_R DYN_MACRO_PLAY2
 #define M_STOP DYN_REC_STOP
-#define F_GUI MT(MOD_RGUI, KC_F2)
-#define LW LT(_LW, KC_SPC)
+
+#define FN_SPC LT(_FN, KC_SPC)
+#define FN_BSP LT(_FN, KC_BSPC)
+#define CTL_ESC CTL_T(KC_ESC)
+#define SFT_MEH SFT_T(KC_PAUSE)
+#define SFT_MIN MT(MOD_RSFT, KC_MINS)
+#define CTL_QT MT(MOD_RCTL, KC_QUOT)
+#define LW_SPC LT(_LW, KC_SPC)
+#define FGUI GUI_T(KC_F2)
+#define GUIGO GUI_T(KC_ENT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
  [_QW] = { /* QWERTY */
-  { KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5, ______,  ______,  KC_6, KC_7,   KC_8,    KC_9,    KC_0,    KC_HOME, KC_END  },
-  { KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, M8,      ______,  KC_Y, KC_U,   KC_I,    KC_O,    KC_P,    KC_QUOT, KC_PGUP },
-  { CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G, M7,      M6,      KC_H, KC_J,   KC_K,    KC_L,    KC_SCLN, CTL_ENT, KC_PGDN },
-  { SFT_MEH, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, ______,  ______,  KC_N, KC_M,   KC_COMM, KC_DOT,  KC_SLSH, SFT_MIN, KC_BSLS },
-  { KC_PAUS, KC_F23,  KC_F15,  KC_LGUI, FN_BSP,  LW,   KC_LALT, KC_RALT, LW,   FN_SPC, F_GUI,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT },
+  { KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,   ______,  ______,  KC_6,   KC_7,   KC_8,    KC_9,    KC_0,    KC_EQL,  KC_END  },
+  { KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,   M8,      M9,      KC_Y,   KC_U,   KC_I,    KC_O,    KC_P,    KC_BSLS, KC_PGUP },
+  { CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,   M7,      M6,      KC_H,   KC_J,   KC_K,    KC_L,    KC_SCLN, CTL_QT,  KC_PGDN },
+  { SFT_MEH, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   ______,  ______,  KC_N,   KC_M,   KC_COMM, KC_DOT,  KC_SLSH, SFT_MIN, KC_BSLS },
+  { KC_PAUS, KC_F23,  KC_F15,  FGUI,    FN_BSP,  LW_SPC, KC_LALT, KC_RALT, LW_SPC, FN_SPC, GUIGO,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT },
  },
 
  [_FN] = { /* FUNCTION */
   { KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   ______,  ______,  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,   ______ },
-  { ______,  M1_S,    M2_S,    M1_R,    M2_R,    M_STOP,  ______,  ______,  KC_HOME, KC_END,  KC_LBRC, KC_RBRC, ______,  KC_DEL,   ______ },
-  { ______,  KC_VOLD, KC_VOLU, KC_MPRV, KC_MNXT, KC_MPLY, ______,  ______,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_BSLS, ______,   ______ },
+  { KC_CAPS, KC_BTN4, KC_BTN5, KC_BTN3, ______,  ______,  ______,  ______,  KC_HOME, KC_END,  KC_LBRC, KC_RBRC, ______,  KC_DEL,   ______ },
+  { ______,  M1_S,    M2_S,    M1_R,    M2_R,    M_STOP,  ______,  ______,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_BSLS, ______,   ______ },
   { ______,  M1,      M2,      M3,      M4,      M5,      ______,  ______,  KC_PGUP, KC_PGDN, KC_EQL,  ______,  ______,  ______,   ______ },
   { ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,  ______,   ______ },
  },
 
  [_LW] = { /* LOWER */
   { ______,  ______,  ______,  KC_INS,  KC_SLCK, KC_PAUS, GAME,   ______, KC_PSCR, ______, ______, ______, ______, ______, ______ },
-  { KC_CAPS, KC_BTN4, KC_BTN5, ______,  ______,  ______,  RESET,  ______, ______,  ______, ______, ______, ______, ______, ______ },
-  { ______,  ______,  ______,  ______,  ______,  ______,  ______, BL_ON,  ______,  ______, ______, ______, ______, ______, ______ },
-  { ______,  ______,  ______,  ______,  KC_BTN3, ______,  ______, BL_OFF, ______,  ______, ______, ______, ______, ______, ______ },
+  { ______,  ______,  ______,  ______,  ______,  ______,  RESET,  ______, ______,  ______, ______, ______, ______, ______, ______ },
+  { ______,  KC_VOLD, KC_VOLU, KC_MPRV, KC_MNXT, KC_MPLY, ______, BL_ON,  KC_LEFT, KC_DOWN,KC_UP,  KC_RGHT,KC_BSLS,______, ______ },
+  { ______,  ______,  ______,  ______,  ______,  ______,  ______, BL_OFF, ______,  ______, ______, ______, ______, ______, ______ },
   { ______,  ______,  ______,  ______,  ______,  ______,  ______, ______, ______,  ______, ______, ______, ______, ______, ______ },
  },
 
  // BL_STEP for backlight levels
 
  [_GAME] = { /* GAMEZZ */
-  { CTL_ESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,  QWERTY, ______,  KC_6,  KC_7,   KC_8,    KC_9,    KC_0,    KC_HOME, KC_END  },
-  { KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,  ______, ______,  KC_Y,  KC_U,   KC_I,    KC_O,    KC_P,    KC_QUOT, KC_PGUP },
-  { KC_GRV,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,  ______, ______,  KC_H,  KC_J,   KC_K,    KC_L,    KC_SCLN, CTL_ENT, KC_PGDN },
-  { SFT_MEH, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,  ______, ______,  KC_N,  KC_M,   KC_COMM, KC_DOT,  KC_SLSH, SFT_MIN, KC_F2   },
-  { KC_PAUS, KC_F23,  KC_F15,  KC_LGUI, KC_BSPC, KC_F4, KC_F1,  KC_RALT, KC_F3, FN_SPC, F_GUI,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT },
+  { CTL_ESC, KC_1,    KC_2,    KC_3,  KC_4,    KC_5,  QWERTY, ______,  KC_6,  KC_7,   KC_8,    KC_9,    KC_0,    KC_HOME, KC_END  },
+  { KC_TAB,  KC_Q,    KC_W,    KC_E,  KC_R,    KC_T,  ______, ______,  KC_Y,  KC_U,   KC_I,    KC_O,    KC_P,    KC_BSLS, KC_PGUP },
+  { KC_GRV,  KC_A,    KC_S,    KC_D,  KC_F,    KC_G,  ______, ______,  KC_H,  KC_J,   KC_K,    KC_L,    KC_SCLN, CTL_QT,  KC_PGDN },
+  { SFT_MEH, KC_Z,    KC_X,    KC_C,  KC_V,    KC_B,  ______, ______,  KC_N,  KC_M,   KC_COMM, KC_DOT,  KC_SLSH, SFT_MIN, KC_F2   },
+  { KC_PAUS, KC_F23,  KC_F15,  KC_F5, KC_BSPC, KC_F4, KC_F1,  KC_RALT, KC_F3, FN_SPC, GUIGO,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT },
  },
 
 };
@@ -113,7 +125,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING("@evalink.test");
         return false; break;
       case M3:
-        SEND_STRING("1234Aa"SS_TAP(X_ENTER));
+        SEND_STRING(""SS_TAP(X_ENTER));
         return false; break;
       case M4:
         SEND_STRING(SS_LSFT("ZQ"));
@@ -129,6 +141,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false; break;
       case M8:
         SEND_STRING(SS_LCTRL(SS_LSFT(SS_TAP(X_P)))SS_TAP(X_F));
+        return false; break;
+      case M9:
+        SEND_STRING(SS_DOWN(X_LSHIFT) SS_DOWN(X_RSHIFT) SS_UP(X_LSHIFT) SS_UP(X_RSHIFT));
         return false; break;
       case GAME:
         if (record->event.pressed) {
