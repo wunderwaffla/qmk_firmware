@@ -42,16 +42,6 @@ enum custom_keycodes {
 
 // Fillers to make layering more clear
 #define ______ KC_TRNS
-/* #define FN_SPC LT(_FN, KC_SPC) */
-/* #define FN_BSP LT(_FN, KC_BSPC) */
-/* #define CTL_ESC CTL_T(KC_ESC) */
-/* #define SFT_MEH SFT_T(KC_PAUSE) */
-/* #define SFT_MIN MT(MOD_RSFT, KC_MINS) */
-/* #define CTL_ENT MT(MOD_RCTL, KC_ENT) */
-/* #define CTL_PENT MT(MOD_RCTL, KC_PENT) */
-/* #define F_GUI MT(MOD_RGUI, KC_F2) */
-/* #define LW LT(_LW, KC_SPC) */
-
 #define M1_S DYN_REC_START1
 #define M2_S DYN_REC_START2
 #define M1_R DYN_MACRO_PLAY1
@@ -125,7 +115,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING("@evalink.test");
         return false; break;
       case M3:
-        SEND_STRING(""SS_TAP(X_ENTER));
+        SEND_STRING("1234AaQq"SS_TAP(X_ENTER));
         return false; break;
       case M4:
         SEND_STRING(SS_LSFT("ZQ"));
