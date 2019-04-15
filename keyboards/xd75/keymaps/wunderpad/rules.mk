@@ -14,6 +14,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ifndef QUANTUM_DIR
-	include ../../../../../Makefile
+	include ../../../../Makefile
 endif
-MOUSEKEY_ENABLE = yes       # Mouse keys(+4700)
+MOUSEKEY_ENABLE = no       # Mouse keys(+4700)
+RGBLIGHT_ENABLE = yes        # Enable WS2812 RGB underlight.  Do not enable this with audio at the same time.
