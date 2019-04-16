@@ -17,6 +17,7 @@ enum custom_keycodes {
     M3,
     M4,
     M5,
+    M6,
     DYNAMIC_MACRO_RANGE
 };
 
@@ -47,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      SFT_MEH, KC_Z, KC_X,    KC_C,    KC_V, KC_B,                      KC_N, KC_M, KC_COMM, KC_DOT ,KC_SLSH, SFT_MIN,
                     KC_LBRC, KC_RBRC,                                              KC_PGUP, KC_PGDN,
                              FGUI,    FN_BSP,                        FN_SPC,  GUIGO,
-                             KC_TAB,  LW_SPC,                        LW_SPC,  M2,
+                             KC_TAB,  LW_SPC,                        LW_SPC,  M6,
                              KC_BSPC, KC_RALT,                       KC_LALT, KC_LALT
   ),
 
@@ -84,19 +85,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
     switch(keycode) {
       case M1:
-        SEND_STRING("gotogit"SS_TAP(X_ENTER));
+        SEND_STRING(""SS_TAP(X_ENTER));
         return false; break;
       case M2:
-        SEND_STRING(SS_DOWN(X_LSHIFT) SS_DOWN(X_RSHIFT) SS_UP(X_LSHIFT) SS_UP(X_RSHIFT));
+        SEND_STRING("@evalink.test");
         return false; break;
       case M3:
-        SEND_STRING("");
+        SEND_STRING("1234AaQq"SS_TAP(X_ENTER));
         return false; break;
       case M4:
         SEND_STRING(SS_LSFT("ZQ"));
         return false; break;
       case M5:
-        SEND_STRING(SS_LSFT("ZZ"));
+        SEND_STRING(SS_LCTRL(SS_LSFT(SS_TAP(X_P)))SS_TAP(X_F));
+        return false; break;
+      case M6:
+        SEND_STRING(SS_DOWN(X_LSHIFT) SS_DOWN(X_RSHIFT) SS_UP(X_LSHIFT) SS_UP(X_RSHIFT));
         return false; break;
     }
   }
