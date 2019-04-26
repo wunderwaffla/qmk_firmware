@@ -48,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      SFT_MEH, KC_Z, KC_X,    KC_C,    KC_V, KC_B,                      KC_N, KC_M, KC_COMM, KC_DOT ,KC_SLSH, SFT_MIN,
                     KC_LBRC, KC_RBRC,                                              KC_PGUP, KC_PGDN,
                              FGUI,    FN_BSP,                        FN_SPC,  GUIGO,
-                             KC_TAB,  LW_SPC,                        LW_SPC,  M6,
+                             KC_TAB,  LW_SPC,                        KC_LEAD,  M6,
                              KC_BSPC, KC_RALT,                       KC_LALT, KC_LALT
   ),
 
@@ -66,8 +66,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_LW] = LAYOUT_5x6(
-     _______, _______,  _______, KC_INS,  KC_SLCK, KC_PAUS,            KC_PSCR, _______, _______, _______, _______, _______,
-     _______,  _______, _______, _______, _______, _______,            _______, _______, _______, _______, _______, _______,
+     _______, _______,  _______, KC_INS,  KC_SLCK, KC_PAUS,            _______, _______, _______, _______, _______, _______,
+     _______,  _______, _______, _______, _______, KC_PSCR,            _______, _______, _______, _______, _______, _______,
      _______, KC_VOLD, KC_VOLU,  KC_MPRV, KC_MNXT, KC_MPLY,            _______, _______, _______, _______, _______, _______,
      RESET,   _______, _______,  _______, _______, _______,            _______, _______, _______, _______, _______, _______,
                        _______,  _______,                                                _______, _______,
@@ -77,6 +77,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
+LEADER_EXTERNS();
+
+void matrix_scan_user(void) {
+  LEADER_DICTIONARY() {
+    leading = false;
+    leader_end();
+
+    SEQ_ONE_KEY(KC_F) {
+      // Anything you can do in a macro.
+      SEND_STRING("QMK is awesome.");
+    }
+    SEQ_TWO_KEYS(KC_D, KC_D) {
+      SEND_STRING(SS_LCTRL("a")SS_LCTRL("c"));
+    }
+    SEQ_THREE_KEYS(KC_D, KC_D, KC_S) {
+      SEND_STRING("https://start.duckduckgo.com"SS_TAP(X_ENTER));
+    }
+    SEQ_TWO_KEYS(KC_A, KC_S) {
+      register_code(KC_LGUI);
+      register_code(KC_S);
+      unregister_code(KC_S);
+      unregister_code(KC_LGUI);
+    }
+  }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_record_dynamic_macro(keycode, record)) {
     return false;
@@ -85,7 +111,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
     switch(keycode) {
       case M1:
-        SEND_STRING(""SS_TAP(X_ENTER));
+        SEND_STRING(SS_LCTRL(SS_LSFT(SS_TAP(X_E))));
         return false; break;
       case M2:
         SEND_STRING("@evalink.test");
