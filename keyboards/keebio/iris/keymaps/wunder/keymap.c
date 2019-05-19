@@ -38,6 +38,7 @@ enum custom_keycodes {
 #define SFT_MIN MT(MOD_RSFT, KC_MINS)
 #define CTL_QT MT(MOD_RCTL, KC_QUOT)
 #define LW_SPC LT(_LW, KC_SPC)
+#define LW_EQL LT(_LW, KC_EQL)
 #define FGUI GUI_T(KC_F2)
 #define GUIGO GUI_T(KC_ENT)
 
@@ -65,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, M1_S,    M2_S,    M1_R,    M2_R,    M_STOP,                             KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_BSLS, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, M1,      M2,      M3,      M4,      M5,      _______,          _______, KC_PGUP, KC_PGDN, KC_EQL,  _______, _______, _______,
+     _______, M1,      M2,      M3,      M4,      M5,      _______,          _______, KC_PGUP, KC_PGDN, KC_EQL,  _______, _______, QWERTY,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, _______,                   _______, _______, _______
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -87,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_GAME] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     CTL_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                              KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    QWERTY,
+     CTL_ESC,  KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    LW_EQL,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
@@ -156,6 +157,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         } return false; break;
       case QWERTY:
         if (record->event.pressed) {
+          layer_off(_FN);
           layer_off(_GAME);
         } return false; break;
     }

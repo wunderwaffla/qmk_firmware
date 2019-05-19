@@ -58,7 +58,7 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [_QW] = { /* QWERTY */
-  { ______, ______, ______, M3,     M_STOP, },
+  { KC_F1,  KC_F5,  M6,     M3,     M_STOP, },
   { ______, ______, ______, M1_R,   M2_R,   },
   { CTL_ESC,______, ______, M1,     KC_V,   },
   { ______, M4,     M5,     KC_ENT, M2,     },
@@ -114,7 +114,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_LCTRL(SS_TAP(X_V)));
         return false; break;
       case M6:
-        SEND_STRING("pazoozoo");
+        SEND_STRING(SS_LCTRL(SS_LSFT("r")));
         return false; break;
       case M7:
         SEND_STRING("pazoozoo");
