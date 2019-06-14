@@ -48,8 +48,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      SFT_MEH, KC_Z, KC_X,    KC_C,    KC_V, KC_B,                      KC_N, KC_M, KC_COMM, KC_DOT ,KC_SLSH, SFT_MIN,
                     KC_LBRC, KC_RBRC,                                              KC_PGUP, KC_PGDN,
                              FGUI,    FN_BSP,                        FN_SPC,  GUIGO,
-                             KC_TAB,  LW_SPC,                        KC_LEAD,  M6,
-                             KC_BSPC, KC_RALT,                       KC_LALT, KC_LALT
+                             RGB_MOD,  LW_SPC,                        KC_LEAD,  M6,
+                             RGB_TOG, KC_RALT,                       KC_LALT, KC_LALT
   ),
 
   [_FN] = LAYOUT_5x6(
