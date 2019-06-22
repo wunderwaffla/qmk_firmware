@@ -48,7 +48,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MOUSEKEY_WHEEL_MAX_SPEED   8
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 40
 
-#define LEADER_TIMEOUT 300
+#define LEADER_TIMEOUT 200
 #define LEADER_PER_KEY_TIMING
 
 #endif
