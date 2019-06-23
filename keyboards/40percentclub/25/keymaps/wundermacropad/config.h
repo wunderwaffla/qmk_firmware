@@ -16,4 +16,8 @@
 
 #pragma once
 
+#define RGBLIGHT_ANIMATIONS
+#define RGB_DI_PIN D3
+#define RGBLED_NUM 5
+
 // place overrides here

@@ -1,15 +1,20 @@
 #include QMK_KEYBOARD_H
 
 extern keymap_config_t keymap_config;
+// Combined Layers
+/* #define LOWER ((1UL << _FN) | (1UL << _RS)) */
+/* #define NUMPAD ((1UL << _FN2) | (1UL << _FN3)) */
 
-enum custom_layers {
+/* enum custom_layers { */
+enum planck_layers {
   _QW,
   _LW,
   _FN,
   _RS,
 };
 
-enum custom_keycodes {
+/* enum custom_keycodes { */
+enum planck_keycodes {
     QWERTY = SAFE_RANGE,
     M1,
     M2,
@@ -58,10 +63,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_LW] = LAYOUT(
-    _______,  _______,  _______,  _______,  _______,  KC_PSCR,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
-    _______,  _______,  _______,  KC_MPRV,  KC_MNXT,  KC_MPLY,  _______,  _______,  _______,  _______,  _______,  _______,
-    RESET,    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
-    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______
+    RGB_TOG,  RGB_HUI,  RGB_SAI,  RGB_MOD, _______,  KC_PSCR, _______, KC_7,   KC_8,   KC_9,  _______,  _______,  _______,
+    _______,  RGB_HUD,  RGB_SAD,  KC_MPRV, KC_MNXT,  KC_MPLY, _______, KC_4,   KC_5,   KC_6,  _______,  _______,
+    _______,  _______,  _______,  _______, _______,  _______, KC_0,   KC_1,   KC_2,   KC_3,  _______,  _______,
+    _______,  _______,  _______,  _______, _______,  _______, _______, _______, _______, _______
   ),
 
   [_RS] = LAYOUT(
@@ -71,6 +76,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______,  _______,  _______,   _______,  _______,  _______,  _______,  _______
   ),
 };
+
+/* uint32_t layer_state_set_user(uint32_t state) { */
+/*   return update_tri_layer_state(state, _FN, _RS, _LW); */
+/* } */
 
 LEADER_EXTERNS();
 
@@ -99,6 +108,20 @@ void matrix_scan_user(void) {
   }
 }
 
+// Process Combined Layers
+/* uint32_t layer_state_set_user(uint32_t state) { */
+/*     if ((state & LOWER) == LOWER) { */
+/*         state |= 1UL << _LW; */
+/*     } else { */
+/*         state &= ~(1UL << _LW); */
+/*     /1* } if ((state & SYSTEM) == SYSTEM) { *1/ */
+/*     /1*     state |= 1UL << _SYSTEM; *1/ */
+/*     /1* } else { *1/ */
+/*     /1*     state &= ~(1UL << _SYSTEM); *1/ */
+/*     } */
+/*     return state; */
+/* } */
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_record_dynamic_macro(keycode, record)) {
     return false;
@@ -125,6 +148,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 };
+
+/* void dip_update(uint8_t index, bool active) { */
+/*   switch (index) { */
+/*     case 0: */
+/*       if (active) { */
+/*         layer_on(_LW); */
+/*       } else { */
+/*         layer_off(_LW); */
+/*       } */
+/*       break; */
+/*    } */
+/* } */
+
   /* //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐ */
   /*    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_EQL, */
   /* //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤ */
