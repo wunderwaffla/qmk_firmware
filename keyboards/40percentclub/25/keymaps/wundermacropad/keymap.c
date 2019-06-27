@@ -74,11 +74,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  },
 
  [_LW] = { /* LOWER */
-  { ______, ______,  ______, RGB_HUI, RESET,  },
-  { KC_7,   KC_8,    KC_9,   RGB_HUD, RGB_MOD, },
-  { KC_4,   KC_5,    KC_6,   ______,  RGB_TOG, },
-  { KC_1,   KC_2,    KC_3,   ______,  RGB_SAI, },
-  { KC_0,   ______,  ______, ______,  RGB_SAD  },
+  { ______, ______,  ______, RGB_MOD, RESET,  },
+  { KC_7,   KC_8,    KC_9,   RGB_HUI, RGB_HUD, },
+  { KC_4,   KC_5,    KC_6,   RGB_SAI, RGB_SAD, },
+  { KC_1,   KC_2,    KC_3,   RGB_VAI, RGB_VAD, },
+  { KC_0,   ______,  ______, ______,  RGB_TOG  },
  },
 
   /* [0] = LAYOUT_macro( */

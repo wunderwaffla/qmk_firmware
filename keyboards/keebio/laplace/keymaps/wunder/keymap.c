@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_FN] = LAYOUT(
-    KC_CAPS,  KC_BTN4,  _______,  _______,  _______,  _______,  KC_HOME,  KC_END,   KC_LBRC,  KC_RBRC,  _______,  KC_DEL,  _______,
+    KC_CAPS,  KC_BTN4,  KC_BTN3,  _______,  _______,  _______,  KC_HOME,  KC_END,   KC_LBRC,  KC_RBRC,  _______,  KC_DEL,  _______,
     _______,  M1_S,     M2_S,     M1_R,     M1_S,     M_STOP,   KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  _______,  _______,
     _______,  M1,       M2,       M3,       M4,       M5,       KC_PGUP,  KC_PGDN,  _______,  _______,  _______,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______
@@ -63,9 +63,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_LW] = LAYOUT(
-    RGB_TOG,  RGB_HUI,  RGB_SAI,  RGB_MOD, _______,  KC_PSCR, _______, KC_7,   KC_8,   KC_9,  _______,  _______,  _______,
-    _______,  RGB_HUD,  RGB_SAD,  KC_MPRV, KC_MNXT,  KC_MPLY, _______, KC_4,   KC_5,   KC_6,  _______,  _______,
-    _______,  _______,  _______,  _______, _______,  _______, KC_0,   KC_1,   KC_2,   KC_3,  _______,  _______,
+    RGB_TOG,  RGB_HUI,  RGB_HUD,  RGB_MOD, _______,  KC_PSCR, _______, KC_7,   KC_8,   KC_9,  _______,  _______,  _______,
+    _______,  RGB_SAI,  RGB_SAD,  KC_MPRV, KC_MNXT,  KC_MPLY, _______, KC_4,   KC_5,   KC_6,  _______,  _______,
+    _______,  RGB_VAI,  RGB_VAD,  _______, _______,  _______, KC_0,   KC_1,   KC_2,   KC_3,  _______,  _______,
     _______,  _______,  _______,  _______, _______,  _______, _______, _______, _______, _______
   ),
 
@@ -130,7 +130,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
     switch(keycode) {
       case M1:
-        SEND_STRING("gotogit"SS_TAP(X_ENTER));
+        SEND_STRING(SS_LCTRL(SS_LSFT(SS_TAP(X_E))));
         return false; break;
       case M2:
         SEND_STRING(SS_DOWN(X_LSHIFT) SS_DOWN(X_RSHIFT) SS_UP(X_LSHIFT) SS_UP(X_RSHIFT));
@@ -142,7 +142,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_LSFT("ZQ"));
         return false; break;
       case M5:
-        SEND_STRING(SS_LSFT("ZZ"));
+        SEND_STRING(SS_LCTRL(SS_LSFT(SS_TAP(X_P)))SS_TAP(X_F));
         return false; break;
     }
   }
