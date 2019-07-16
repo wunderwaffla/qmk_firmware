@@ -8,6 +8,7 @@ enum custom_layers {
   _QW,
   _LW,
   _FN,
+  _AJ,
 };
 
 enum custom_keycodes {
@@ -74,6 +75,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                            _______,_______,          _______,_______,
                                            _______,_______,          _______,_______
   ),
+
+  [_AJ] = LAYOUT_5x6(
+     RGB_TOG, RGB_HUI, RGB_HUD, RGB_MOD, _______, KC_INS,             _______, _______, _______, _______, KC_SLCK, KC_PAUS,
+     RGB_TOG, RGB_SAI, RGB_SAD, _______, _______,  KC_PSCR,           _______, KC_7,    KC_8,    KC_9,    _______, _______,
+     _______, RGB_VAI, RGB_VAD, KC_MPRV, KC_MNXT,  KC_MPLY,           _______, KC_4,    KC_5,    KC_6,    _______, _______,
+     RESET,   _______, _______, _______, _______,  _______,           KC_0,    KC_1,    KC_2,    KC_3,    _______, _______,
+                       _______, _______,                                                _______, _______,
+                                           _______,_______,          _______,_______,
+                                           _______,_______,          _______,_______,
+                                           _______,_______,          _______,_______
+  ),
 };
 
 LEADER_EXTERNS();
@@ -100,6 +112,10 @@ void matrix_scan_user(void) {
       unregister_code(KC_LGUI);
     }
   }
+}
+
+uint32_t layer_state_set_user(uint32_t state) {
+  return update_tri_layer_state(state, _LW, _FN, _AJ);
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
