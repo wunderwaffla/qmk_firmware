@@ -132,7 +132,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING("@evalink.test");
         return false; break;
       case M3:
-        SEND_STRING("1234AaQq"SS_TAP(X_ENTER));
+        SEND_STRING(""SS_TAP(X_ENTER));
         return false; break;
       case M4:
         SEND_STRING(SS_LSFT("ZQ"));
