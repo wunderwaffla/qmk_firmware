@@ -26,6 +26,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LEADER_TIMEOUT 300
 #define LEADER_PER_KEY_TIMING
 
+#define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_TERM 150
+#define TAP_HOLD_CAPS_DELAY 150
+#define TAPPING_TERM_PER_KEY
+
 // #define MASTER_RIGHT
 //#define EE_HANDS
 // Rows are doubled-up
