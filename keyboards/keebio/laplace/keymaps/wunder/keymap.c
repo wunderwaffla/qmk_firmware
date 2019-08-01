@@ -7,7 +7,6 @@ enum custom_layers {
   _LW,
   _FN,
   _RS,
-  _AJ,
 };
 
 enum custom_keycodes {
@@ -35,45 +34,38 @@ enum custom_keycodes {
 #define SFT_MEH SFT_T(KC_PAUSE)
 #define SFT_MIN MT(MOD_RSFT, KC_MINS)
 #define CTL_QT MT(MOD_RCTL, KC_QUOT)
-#define AJ_SPC LT(_AJ, KC_SPC)
 #define FGUI GUI_T(KC_F2)
 #define GUIGO GUI_T(KC_ENT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QW] = LAYOUT(
-    KC_TAB,   KC_Q,    KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,   KC_U,     KC_I,     KC_O,     KC_P,     KC_BSLS,   M6,
-    CTL_ESC,  KC_A,    KC_S,     KC_D,     KC_F,     KC_G,     KC_H,   KC_J,     KC_K,     KC_L,     KC_SCLN,  CTL_QT,
-    SFT_MEH,  KC_Z,    KC_X,     KC_C,     KC_V,     KC_B,     KC_N,   KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  SFT_MIN,
-    _______,  AJ_SPC,  FGUI,     _______,  LW_BSP,   FN_SPC,   GUIGO,  KC_LEAD,  KC_RALT,  _______
+    KC_TAB,   KC_Q,    KC_W,     KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS, M6,
+    CTL_ESC,  KC_A,    KC_S,     KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, CTL_QT,
+    SFT_MEH,  KC_Z,    KC_X,     KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SFT_MIN,
+    _______,  _______, FGUI,     _______, LW_BSP,  FN_SPC,  GUIGO,   KC_LEAD, KC_RALT, _______
   ),
 
   [_FN] = LAYOUT(
-    KC_CAPS,  KC_BTN4,  KC_BTN3,  _______,  _______,  _______,  KC_HOME,  KC_END,   KC_LBRC,  KC_RBRC,  _______,  KC_DEL,  _______,
-    _______,  M1_S,     M2_S,     M1_R,     M1_S,     M_STOP,   KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  _______,  _______,
-    _______,  M1,       M2,       M3,       M4,       M5,       KC_PGUP,  KC_PGDN,  _______,  _______,  _______,  _______,
-    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______
-  ),
-
-  [_RS] = LAYOUT(
-    RGB_TOG,  RGB_HUI,  RGB_HUD,  RGB_MOD, _______,  KC_PSCR, _______, KC_7,    KC_8,    KC_9,  _______,  _______,  _______,
-    _______,  RGB_SAI,  RGB_SAD,  KC_MPRV, KC_MNXT,  KC_MPLY, _______, KC_4,    KC_5,    KC_6,  _______,  _______,
-    _______,  RGB_VAI,  RGB_VAD,  _______, _______,  _______, KC_0,    KC_1,    KC_2,    KC_3,  _______,  _______,
-    _______,  _______,  _______,  _______, _______,  _______, _______, _______, _______, _______
-  ),
-
-  [_AJ] = LAYOUT(
-    RGB_TOG,  RGB_HUI,  RGB_HUD,  RGB_MOD, _______,  KC_PSCR, _______, KC_7,    KC_8,    KC_9,  _______,  _______,  _______,
-    _______,  RGB_SAI,  RGB_SAD,  KC_MPRV, KC_MNXT,  KC_MPLY, _______, KC_4,    KC_5,    KC_6,  _______,  _______,
-    _______,  RGB_VAI,  RGB_VAD,  _______, _______,  _______, KC_0,    KC_1,    KC_2,    KC_3,  _______,  _______,
-    _______,  _______,  _______,  _______, _______,  _______, _______, _______, _______, _______
+    KC_CAPS,  KC_BTN4, KC_BTN3,  _______, M1_R,    M2_R,    KC_HOME, KC_END,  KC_LBRC, KC_RBRC, _______, KC_DEL,  _______,
+    _______,  _______, _______,  _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
+    _______,  M1,      M2,       M3,      M4,      M5,      KC_PGUP, KC_PGDN, _______, _______, _______, _______,
+    _______,  _______, _______,  _______, _______, _______, _______, _______, _______, _______
   ),
 
   [_LW] = LAYOUT(
-    KC_F1,   KC_F2,   KC_F3, KC_F4,   KC_F5,   KC_F6,  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______,
-    KC_GRV,  KC_1,    KC_2,  KC_3,    KC_4,   KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_EQL,
-    KC_TILD, KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_PLUS,
-    _______, _______, _______,  _______,  _______,   _______,  _______,  _______,  _______,  _______
+    KC_TILD,  KC_EXLM, KC_AT,    KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_PLUS, _______,
+    KC_GRV,   KC_1,    KC_2,     KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_EQL,
+    KC_F1,    KC_F2,   KC_F3,    KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
+    _______,  _______, _______,  _______, _______, _______, _______, _______, _______, _______
   ),
+
+  [_RS] = LAYOUT(
+    RGB_TOG,  RGB_HUI, RGB_HUD,  M_STOP,  M1_S,    M2_S,    _______, KC_7,    KC_8,    KC_9,    _______, _______, _______,
+    RGB_MOD,  RGB_SAI, RGB_SAD,  KC_MPRV, KC_MNXT, KC_MPLY, _______, KC_4,    KC_5,    KC_6,    _______, _______,
+    RESET,    RGB_VAI, RGB_VAD,  _______, _______, KC_PSCR, KC_0,    KC_1,    KC_2,    KC_3,    _______, _______,
+    _______,  _______, _______,  _______, _______, _______, _______, _______, _______, _______
+  ),
+
 };
 
 LEADER_EXTERNS();

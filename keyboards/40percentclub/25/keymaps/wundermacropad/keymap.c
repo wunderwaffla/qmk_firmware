@@ -46,6 +46,7 @@ enum custom_keycodes {
 #define M_STOP DYN_REC_STOP
 
 #define FN_SPC LT(_FN, KC_SPC)
+#define FN_X LT(_FN, KC_X)
 #define FN_BSP LT(_FN, KC_BSPC)
 #define CTL_ESC CTL_T(KC_ESC)
 #define SFT_MEH SFT_T(KC_PAUSE)
@@ -62,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   { ______, ______, ______, M1_R,   M2_R,   },
   { CTL_ESC,______, ______, M1,     KC_V,   },
   { ______, M4,     M5,     KC_ENT, M2,     },
-  { SFT_MEH,______, ______, LW_BSP, FN_SPC  },
+  { SFT_MEH,______, KC_F12, LW_BSP, FN_X  },
  },
 
  [_FN] = { /* FUNCTION */
