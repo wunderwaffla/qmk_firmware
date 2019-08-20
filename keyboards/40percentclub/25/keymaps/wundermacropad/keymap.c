@@ -17,6 +17,7 @@
 
 enum custom_layers {
   _QW,
+  _AUDACT,
   _LW,
   _FN,
 };
@@ -59,11 +60,11 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [_QW] = { /* QWERTY */
-  { KC_F1,  KC_F5,  M6,     M3,     M_STOP, },
-  { ______, ______, ______, M1_R,   M2_R,   },
-  { CTL_ESC,______, ______, M1,     KC_V,   },
-  { ______, M4,     M5,     KC_ENT, M2,     },
-  { SFT_MEH,______, KC_F12, LW_BSP, FN_X  },
+  { ______,  ______, ______, ______, DF(_AUDACT), },
+  { ______,  ______, ______, ______, ______, },
+  { KC_MPRV, ______, ______, ______, ______, },
+  { KC_MPLY, ______, ______, ______, ______, },
+  { KC_MNXT, ______, ______, LW_BSP, ______  },
  },
 
  [_FN] = { /* FUNCTION */
@@ -75,11 +76,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  },
 
  [_LW] = { /* LOWER */
-  { ______, ______,  ______, RGB_MOD, RESET,  },
+  { DF(_QW), ______,  ______, RGB_MOD, RESET,  },
   { KC_7,   KC_8,    KC_9,   RGB_HUI, RGB_HUD, },
   { KC_4,   KC_5,    KC_6,   RGB_SAI, RGB_SAD, },
   { KC_1,   KC_2,    KC_3,   RGB_VAI, RGB_VAD, },
   { KC_0,   ______,  ______, ______,  RGB_TOG  },
+ },
+
+ [_AUDACT] = { /* QWERTY */
+  { KC_F1,  KC_F5,  M6,     M3,     M_STOP, },
+  { ______, ______, ______, M1_R,   M2_R,   },
+  { CTL_ESC,______, ______, M1,     KC_V,   },
+  { ______, M4,     M5,     KC_ENT, M2,     },
+  { SFT_MEH,______, KC_F12, LW_BSP, FN_X  },
  },
 
   /* [0] = LAYOUT_macro( */
@@ -90,6 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /*   KC_LCTL,  KC_LGUI, KC_LALT, KC_SPC,  KC_SPC \ */
   /* ), */
 };
+
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 

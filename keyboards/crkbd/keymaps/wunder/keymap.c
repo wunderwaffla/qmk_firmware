@@ -70,9 +70,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_RS] = LAYOUT( \
-    RGB_TOG, RGB_HUI, RGB_HUD, M_STOP,M1_S,M2_S,                 KC_INS, KC_7, KC_8, KC_9, KC_SLCK, _______,\
-    RGB_MOD, RGB_SAI, RGB_SAD, KC_MPRV, KC_MNXT, KC_MPLY,        _______,KC_4,KC_5,KC_6,_______,_______,\
-    RESET,   RGB_VAI, RGB_VAD, KC_NO, KC_NO, KC_NO,              KC_0,KC_1,KC_2,KC_3,_______,_______,\
+    _______, _______, _______, M_STOP,M1_S,M2_S,                 KC_INS, KC_7, KC_8, KC_9, KC_SLCK, _______,\
+    _______, _______, _______, KC_MPRV, KC_MNXT, KC_MPLY,        _______,KC_4,KC_5,KC_6,_______,_______,\
+    RESET,   _______, _______, KC_NO, KC_NO, KC_NO,              KC_0,KC_1,KC_2,KC_3,_______,_______,\
                                 _______, _______,_______,   _______, _______,_______ \
   )
 };
