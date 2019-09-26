@@ -1,4 +1,4 @@
-/* A standard layout for the Dactyl Manuform 5x6 Keyboard */ 
+/* A standard layout for the Dactyl Manuform 5x6 Keyboard */
 
 #include QMK_KEYBOARD_H
 
@@ -35,7 +35,9 @@ enum custom_keycodes {
 #define FN_SPC LT(_FN, KC_SPC)
 #define FN_BSP LT(_FN, KC_BSPC)
 #define CTL_ESC CTL_T(KC_ESC)
-#define SFT_MEH SFT_T(KC_PAUSE)
+#define SFT_MEH SFT_T(KC_GRV)
+#define SFT_SPC SFT_T(KC_SPC)
+#define SFT_BSP SFT_T(KC_BSPC)
 #define SFT_MIN MT(MOD_RSFT, KC_MINS)
 #define CTL_QT MT(MOD_RCTL, KC_QUOT)
 #define LW_SPC LT(_LW, KC_SPC)
@@ -48,11 +50,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QW] = LAYOUT(
      KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,              KC_Y,    KC_U,    KC_I,    KC_O,     KC_P,    KC_BSLS,
      CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,              KC_H,    KC_J,    KC_K,    KC_L,     KC_SCLN, CTL_QT,
-     SFT_MEH, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,              KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH, SFT_MIN,
-                       KC_LBRC, KC_RBRC,                                      KC_PGUP, KC_PGDN,
+     KC_GRV,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,              KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH, KC_MINS,
+                       KC_PGUP, KC_PGDN,                                      KC_LBRC, KC_RBRC,
                                          FGUI,    LW_BSP,            FN_SPC,  GUIGO,
-                                         KC_LEAD, FN_SPC,            LW_BSP,  M6,
-                                         _______, KC_RALT,           KC_LALT, _______
+                                         KC_LEAD, SFT_SPC,           SFT_BSP, M6,
+                                         KC_PAUS, KC_RALT,           KC_LALT, _______
+     /* SFT_MEH, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,              KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH, SFT_MIN, */
+                       /* KC_PGDN, KC_PGUP,                                      KC_LBRC, KC_RBRC, */
   ),
 
   [_FN] = LAYOUT(
@@ -76,9 +80,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_RS] = LAYOUT(
-     RGB_TOG, RGB_HUI, RGB_HUD, M_STOP,  M1_S,    M2_S,              KC_INS,  KC_7,    KC_8,    KC_9,    KC_SLCK, KC_PAUS,
-     RGB_MOD, RGB_SAI, RGB_SAD, KC_MPRV, KC_MNXT, KC_MPLY,           _______, KC_4,    KC_5,    KC_6,    _______, _______,
-     RESET,   RGB_VAI, RGB_VAD, _______, _______, KC_PSCR,           KC_0,    KC_1,    KC_2,    KC_3,    _______, _______,
+     _______, _______, _______, M_STOP,  M1_S,    M2_S,              KC_INS,  KC_7,    KC_8,    KC_9,    KC_SLCK, KC_PAUS,
+     _______, _______, _______, KC_MPRV, KC_MNXT, KC_MPLY,           _______, KC_4,    KC_5,    KC_6,    _______, _______,
+     RESET,   _______, _______, _______, _______, KC_PSCR,           KC_0,    KC_1,    KC_2,    KC_3,    _______, _______,
                        _______, _______,                                               _______, _______,
                                          _______, _______,           _______, _______,
                                          _______, _______,           _______, _______,
@@ -95,7 +99,7 @@ void matrix_scan_user(void) {
 
     SEQ_ONE_KEY(KC_J) {
       // Anything you can do in a macro.
-      SEND_STRING(SS_DOWN(X_LSHIFT) SS_DOWN(X_RSHIFT) SS_UP(X_LSHIFT) SS_UP(X_RSHIFT));
+      /* SEND_STRING(SS_DOWN(X_LSHIFT) SS_DOWN(X_LALT) SS_UP(X_LSHIFT) SS_UP(X_LALT)); */
     }
     SEQ_TWO_KEYS(KC_D, KC_E) {
       SEND_STRING("docker exe"SS_TAP(X_TAB)"-it eva"SS_TAP(X_TAB)"backe"SS_TAP(X_TAB)"sh"SS_TAP(X_ENTER)"tail -f -n 1000 $LOG_PORTAL"SS_TAP(X_ENTER));
@@ -108,7 +112,7 @@ void matrix_scan_user(void) {
       SEND_STRING("ssh -L 2050:localhost:5132 ");
     }
     SEQ_THREE_KEYS(KC_D, KC_D, KC_S) {
-      SEND_STRING("https://start.duckduckgo.com"SS_TAP(X_ENTER));
+      /* SEND_STRING("https://start.duckduckgo.com"SS_TAP(X_ENTER)); */
     }
     SEQ_TWO_KEYS(KC_A, KC_S) {
       register_code(KC_LGUI);
@@ -146,11 +150,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_LCTRL(SS_LSFT(SS_TAP(X_P)))SS_TAP(X_F));
         return false; break;
       case M6:
-        SEND_STRING(SS_DOWN(X_LSHIFT) SS_DOWN(X_RSHIFT) SS_UP(X_LSHIFT) SS_UP(X_RSHIFT));
+        SEND_STRING(SS_DOWN(X_LSHIFT) SS_DOWN(X_LALT) SS_UP(X_LSHIFT) SS_UP(X_LALT));
         return false; break;
     }
   }
   return true;
 };
-
-
