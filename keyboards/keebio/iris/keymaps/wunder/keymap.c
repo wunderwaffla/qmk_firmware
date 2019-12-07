@@ -113,7 +113,7 @@ void matrix_scan_user(void) {
     SEQ_ONE_KEY(KC_J) {
       // Anything you can do in a macro.
       // SEND_STRING("QMK is awesome.");
-      SEND_STRING(SS_DOWN(X_LSHIFT) SS_DOWN(X_RSHIFT) SS_UP(X_LSHIFT) SS_UP(X_RSHIFT));
+      // SEND_STRING(SS_DOWN(X_LSHIFT) SS_DOWN(X_LALT) SS_UP(X_LSHIFT) SS_UP(X_LALT));
     }
     SEQ_TWO_KEYS(KC_D, KC_D) {
       SEND_STRING(SS_LCTRL("a")SS_LCTRL("c"));
@@ -155,7 +155,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_LSFT("ZQ"));
         return false; break;
       case M5:
-        SEND_STRING(SS_DOWN(X_LSHIFT) SS_DOWN(X_RSHIFT) SS_UP(X_LSHIFT) SS_UP(X_RSHIFT));
+        SEND_STRING(SS_DOWN(X_LSHIFT) SS_DOWN(X_LALT) SS_UP(X_LSHIFT) SS_UP(X_LALT));
         return false; break;
     }
   }
