@@ -36,7 +36,7 @@ enum custom_keycodes {
 #define FN_SPC LT(_FN, KC_SPC)
 #define FN_BSP LT(_FN, KC_BSPC)
 #define CTL_ESC CTL_T(KC_ESC)
-#define SFT_MEH SFT_T(KC_PAUSE)
+#define SFT_MEH SFT_T(KC_GRV)
 #define SFT_MIN MT(MOD_RSFT, KC_MINS)
 #define CTL_QT MT(MOD_RCTL, KC_QUOT)
 #define LW_SPC LT(_LW, KC_SPC)
@@ -70,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_RS] = LAYOUT( \
     _______, _______, _______, M_STOP,  M1_S,    M2_S,                        KC_INS,  KC_7, KC_8, KC_9, KC_SLCK, _______,\
     _______, _______, _______, KC_MPRV, KC_MNXT, KC_MPLY,                     _______, KC_4, KC_5, KC_6, _______, _______,\
-    RESET,   _______, _______, _______, _______, _______,                     KC_0,    KC_1, KC_2, KC_3, _______, _______,\
+    RESET,   _______, _______, _______, _______, KC_PSCR,                     KC_0,    KC_1, KC_2, KC_3, _______, _______,\
                                         _______, _______, _______,   _______, _______, _______ \
   )
 };

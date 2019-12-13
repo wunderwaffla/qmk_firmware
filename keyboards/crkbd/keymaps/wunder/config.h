@@ -34,11 +34,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LEADER_TIMEOUT 300
 #define LEADER_PER_KEY_TIMING
 
-#define AUTO_SHIFT_TIMEOUT 150
-#define NO_AUTO_SHIFT_ALPHA
 #define PERMISSIVE_HOLD
-
-#define TAPPING_FORCE_HOLD
+#define IGNORE_MOD_TAP_INTERRUPT
 #define TAPPING_TERM 150
 
 #ifdef RGBLIGHT_ENABLE
