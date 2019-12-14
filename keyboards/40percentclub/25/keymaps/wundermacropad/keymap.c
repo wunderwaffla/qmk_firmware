@@ -39,7 +39,7 @@ enum custom_keycodes {
 #include "dynamic_macro.h"
 
 // Fillers to make layering more clear
-#define ______ KC_TRNS
+#define ______ KC_NO
 #define M1_S DYN_REC_START1
 #define M2_S DYN_REC_START2
 #define M1_R DYN_MACRO_PLAY1
@@ -47,7 +47,7 @@ enum custom_keycodes {
 #define M_STOP DYN_REC_STOP
 
 #define FN_SPC LT(_FN, KC_SPC)
-#define FN_X LT(_FN, KC_X)
+#define PLAY LT(_FN, KC_ENT)
 #define FN_BSP LT(_FN, KC_BSPC)
 #define CTL_ESC CTL_T(KC_ESC)
 #define SFT_MEH SFT_T(KC_PAUSE)
@@ -56,7 +56,7 @@ enum custom_keycodes {
 #define LW_SPC LT(_LW, KC_SPC)
 #define LW_BSP LT(_LW, KC_BSPC)
 #define FGUI GUI_T(KC_F2)
-#define GUIGO GUI_T(KC_ENT)
+#define LOLT ALT_T(KC_ENT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [_QW] = { /* QWERTY */
@@ -68,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  },
 
  [_FN] = { /* FUNCTION */
-  { KC_LEFT,KC_DOWN, KC_UP, KC_RGHT, ______, },
+  { KC_LEFT,KC_DOWN, KC_UP, KC_RGHT, M_STOP, },
   { ______, ______,  ______, M1_S,   M2_S,   },
   { ______, ______,  ______, ______, ______, },
   { ______, ______,  ______, ______, ______, },
@@ -76,20 +76,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  },
 
  [_LW] = { /* LOWER */
-  { DF(_QW), ______,  ______, RGB_MOD, RESET,  },
+  { DF(_QW),______,  ______, RGB_MOD, RESET,  },
   { KC_7,   KC_8,    KC_9,   RGB_HUI, RGB_HUD, },
   { KC_4,   KC_5,    KC_6,   RGB_SAI, RGB_SAD, },
   { KC_1,   KC_2,    KC_3,   RGB_VAI, RGB_VAD, },
   { KC_0,   ______,  ______, ______,  RGB_TOG  },
  },
 
- [_AUDACT] = { /* QWERTY */
+ [_AUDACT] = {
   { KC_F1,  KC_F5,  M6,     M3,     M_STOP, },
   { ______, ______, ______, M1_R,   M2_R,   },
-  { CTL_ESC,______, ______, M1,     KC_V,   },
-  { ______, M4,     M5,     KC_ENT, M2,     },
-  { SFT_MEH,______, KC_F12, LW_BSP, FN_X  },
+  { CTL_ESC,SFT_MEH,LOLT,   FGUI,   PLAY    },
+  { FGUI,   M4,     M5,     KC_ENT, M1,     },
+  { ______, ______, ______, LW_BSP, ______   },
  },
+
+/* [_AUDACT] = {
+ { KC_F1,  KC_F5,  M6,     M3,     M_STOP, },
+ { ______, ______, ______, M1_R,   M2_R,   },
+ { CTL_ESC,______, ______, M1,     KC_V,   },
+ { ______, M4,     M5,     KC_ENT, M2,     },
+ { SFT_MEH,______, KC_F12, LW_BSP, FN_X  },
+ }, */
 
   /* [0] = LAYOUT_macro( */
   /*   KC_ESC,   KC_1,    KC_2,    KC_3,    KC_4,  \ */
