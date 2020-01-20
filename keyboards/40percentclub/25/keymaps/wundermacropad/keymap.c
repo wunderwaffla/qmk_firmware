@@ -84,11 +84,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  },
 
  [_AUDACT] = {
-  { KC_F1,  KC_F5,  M6,     M3,     M_STOP, },
+  { KC_F1,  KC_F5,  M6,     M3,     ______, },
   { ______, ______, ______, M1_R,   M2_R,   },
-  { CTL_ESC,SFT_MEH,LOLT,   FGUI,   PLAY    },
-  { FGUI,   M4,     M5,     KC_ENT, M1,     },
-  { ______, ______, ______, LW_BSP, ______   },
+  { CTL_ESC,SFT_MEH,LOLT,   KC_S,   M1    },
+  { M3,     M4,     M5,     FGUI,   M2,     },
+  { ______, ______, ______, LW_BSP, PLAY   },
  },
 
 /* [_AUDACT] = {
@@ -108,55 +108,65 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* ), */
 };
 
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   if (!process_record_dynamic_macro(keycode, record)) {
     return false;
   }
-
-  if (record->event.pressed) {
-    switch(keycode) {
-      case M1:
-        SEND_STRING(SS_LCTRL(SS_TAP(X_Z)));
-        return false; break;
-      case M2:
-        SEND_STRING(SS_LCTRL(SS_LSFT("k"))SS_TAP(X_BSPACE));
-        return false; break;
-      case M3:
-        SEND_STRING(SS_LCTRL(SS_LSFT("s")));
-        return false; break;
-      case M4:
-        SEND_STRING(SS_LCTRL(SS_TAP(X_C)));
-        return false; break;
-      case M5:
-        SEND_STRING(SS_LCTRL(SS_TAP(X_V)));
-        return false; break;
-      case M6:
-        SEND_STRING(SS_LCTRL(SS_LSFT("r")));
-        return false; break;
-      case M7:
-        SEND_STRING("pazoozoo");
-        return false; break;
-      case M8:
-        SEND_STRING("pazoozoo");
-        return false; break;
-      case M9:
-        SEND_STRING("pazoozoo");
-        return false; break;
-    }
+  switch(keycode) {
+    case M1:
+      if (record->event.pressed) {
+          SEND_STRING(SS_LCTRL(SS_TAP(X_Z)));
+      } else {
+      }
+      break;
+    case M2:
+      if (record->event.pressed) {
+          SEND_STRING(SS_LCTRL(SS_LSFT("a")));
+          //SEND_STRING(SS_LCTRL("a")SS_TAP(X_S));
+          //register_code(KC_LALT);
+      } else {
+          //unregister_code(KC_LALT);
+      }
+      break;
+    case M3:
+      if (record->event.pressed) {
+          SEND_STRING(SS_LALT("d"));
+      } else {
+      }
+      break;
+    case M4:
+      if (record->event.pressed) {
+          SEND_STRING(SS_LCTRL(SS_TAP(X_C)));
+      } else {
+      }
+      break;
+    case M5:
+      if (record->event.pressed) {
+          SEND_STRING(SS_LCTRL(SS_TAP(X_V)));
+      } else {
+      }
+      break;
+    case M6:
+      if (record->event.pressed) {
+          SEND_STRING(SS_LCTRL(SS_LSFT("r")));
+      } else {
+      }
+      break;
+    case M7:
+      break;
+    case M8:
+      break;
+    case M9:
+      break;
   }
   return true;
 };
-
 void matrix_init_user(void) {
-
 }
-
 void matrix_scan_user(void) {
-
 }
-
 void led_set_user(uint8_t usb_led) {
-
 }
+/*_delay_ms(200);
+SEND_STRING(SS_TAP(X_ESCAPE));*/

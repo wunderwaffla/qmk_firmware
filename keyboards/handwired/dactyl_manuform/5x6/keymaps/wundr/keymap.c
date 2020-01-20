@@ -34,12 +34,12 @@ enum custom_keycodes {
 #define FN_BSP LT(_FN, KC_BSPC)
 #define CTL_ESC CTL_T(KC_ESC)
 #define SFT_MEH SFT_T(KC_PAUSE)
-#define SFT_MIN MT(MOD_RSFT, KC_MINS)
+#define SFT_MIN GUI_T(KC_MINS)
 #define CTL_QT MT(MOD_RCTL, KC_QUOT)
 #define LW_SPC LT(_LW, KC_SPC)
 #define LW_BSP LT(_LW, KC_BSPC)
 #define FGUI GUI_T(KC_F2)
-#define GUIGO GUI_T(KC_ENT)
+#define SFTGO SFT_T(KC_ENT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      CTL_ESC, KC_A, KC_S,    KC_D,    KC_F, KC_G,                      KC_H, KC_J, KC_K,    KC_L  ,KC_SCLN,  CTL_QT,
      SFT_MEH, KC_Z, KC_X,    KC_C,    KC_V, KC_B,                      KC_N, KC_M, KC_COMM, KC_DOT ,KC_SLSH, SFT_MIN,
                     KC_PGUP, KC_PGDN,                                              KC_LBRC, KC_RBRC,
-                             FGUI,    LW_BSP,                        FN_SPC,  GUIGO,
+                             FGUI,    LW_BSP,                        FN_SPC,  SFTGO,
                              KC_LEAD, FN_SPC,                        LW_BSP,  M6,
                              _______, KC_RALT,                       KC_LALT, _______
   ),
