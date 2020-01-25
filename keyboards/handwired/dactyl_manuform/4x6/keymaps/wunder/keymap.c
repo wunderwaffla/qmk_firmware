@@ -55,13 +55,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                          FGUI,    LW_BSP,            FN_SPC,  GUIGO,
                                          KC_LEAD, FN_SPC,            LW_BSP, M6,
                                          KC_PAUS, KC_RALT,           KC_LALT, _______
-                       /* KC_PGDN, KC_PGUP,                                      KC_LBRC, KC_RBRC, */
   ),
 
   [_FN] = LAYOUT(
-     KC_CAPS, KC_BTN4, KC_BTN3, _______, M1_R,     M2_R,             KC_HOME, KC_END,  KC_LBRC, KC_RBRC,  _______, KC_DEL,
-     _______, _______, _______, _______, _______, _______,           KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,  _______, _______,
-     _______, M1,      M2,      M3,      M4,      M5,                _______, _______, _______,  _______, _______, _______,
+     KC_CAPS, KC_BTN4, KC_P7, KC_P8, KC_P9, M1_R,                    KC_HOME, KC_END,  KC_LBRC, KC_RBRC,  _______, KC_DEL,
+     _______, KC_PDOT, KC_P4, KC_P5, KC_P6, M2_R,                    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,  _______, _______,
+     _______, KC_P0,   KC_P1, KC_P2, KC_P3, _______,                 M1,      M2,      M3,      M4,       M5,      _______,
                        _______, _______,                                               _______, _______,
                                          _______, _______,           _______, _______,
                                          _______, _______,           _______, _______,
@@ -79,9 +78,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_RS] = LAYOUT(
-     _______, _______, _______, M_STOP,  M1_S,    M2_S,              KC_INS,  KC_7,    KC_8,    KC_9,    KC_SLCK, KC_PAUS,
-     _______, _______, _______, KC_MPRV, KC_MNXT, KC_MPLY,           _______, KC_4,    KC_5,    KC_6,    _______, _______,
-     RESET,   _______, _______, _______, _______, KC_PSCR,           KC_0,    KC_1,    KC_2,    KC_3,    _______, _______,
+     _______, _______, _______, _______, M_STOP,  M1_S,              KC_INS,  _______, _______, _______, KC_SLCK, KC_PAUS,
+     _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, M2_S,              _______, _______, _______, _______, _______, _______,
+     RESET,   _______, _______, _______, _______, KC_PSCR,           _______, _______, _______, _______, _______, _______,
                        _______, _______,                                               _______, _______,
                                          _______, _______,           _______, _______,
                                          _______, _______,           _______, _______,
