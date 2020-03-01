@@ -85,9 +85,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
  [_AUDACT] = {
   { KC_F1,  KC_F5,  M6,     M3,     ______, },
-  { ______, ______, ______, M1_R,   M2_R,   },
+  { ______, M4,     KC_DEL, M1_R,   M2_R,   },
   { CTL_ESC,SFT_MEH,LOLT,   KC_S,   M1    },
-  { M3,     M4,     M5,     FGUI,   M2,     },
+  { M3,     ______, ______, FGUI,   M2,     },
   { ______, ______, ______, LW_BSP, PLAY   },
  },
 
@@ -137,8 +137,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case M4:
       if (record->event.pressed) {
-          SEND_STRING(SS_LCTRL(SS_TAP(X_C)));
+          SEND_STRING(SS_LCTRL(SS_LSFT("j")));
       } else {
+          SEND_STRING(SS_LCTRL(SS_LSFT("j")));
       }
       break;
     case M5:
