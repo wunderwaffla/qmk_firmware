@@ -1,4 +1,4 @@
-# sparkle
+# Sparkle
 
 ![sparkle](imgur.com image replace me!)
 

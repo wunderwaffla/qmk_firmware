@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VENDOR_ID       0xFEED
 #define PRODUCT_ID      0x3060
 #define DEVICE_VER      0x0001
-#define MANUFACTURER    wunder
+#define MANUFACTURER    WundeR
 #define PRODUCT         Sparkle
 #define DESCRIPTION     Split keyboard for most faithful students
 
@@ -33,11 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* serial.c configuration for split keyboard */
 #define SOFT_SERIAL_PIN D1
 #define USE_SERIAL
-
-/* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
-#define LOCKING_SUPPORT_ENABLE
-/* Locking resynchronize hack */
-#define LOCKING_RESYNC_ENABLE
+#define MASTER_RIGHT
 
 /* Enables This makes it easier for fast typists to use dual-function keys */
 #define PERMISSIVE_HOLD
@@ -46,7 +42,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Rows are doubled-up
 #define MATRIX_ROWS 10
 #define MATRIX_COLS 7
-#define MASTER_RIGHT
 
 // row-driven
 #define MATRIX_ROW_PINS { F7, B1, B3, B2, B6 }
