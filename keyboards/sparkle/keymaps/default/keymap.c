@@ -34,28 +34,28 @@ enum custom_keycodes {
 
 #define FN_SPC LT(_FN, KC_SPC)
 #define FN_BSP LT(_FN, KC_BSPC)
-#define GUI_ESC LGUI_T(KC_ESC)
+#define CTL_ESC LCTL_T(KC_ESC)
 #define GUI_MEH LGUI_T(KC_TAB)
 #define SFT_SPC SFT_T(KC_SPC)
 #define SFT_BSP SFT_T(KC_BSPC)
 /* #define SFT_MIN MT(MOD_RSFT, KC_MINS) */
 #define GUI_MIN RGUI_T(KC_MINS)
 // #define GUI_QT MT(MOD_RGUI, KC_QUOT)
-#define GUI_QT RGUI_T(KC_QUOT)
+#define CTL_QT RCTL_T(KC_QUOT)
 #define LW_SPC LT(_LW, KC_SPC)
 #define LW_BSP LT(_LW, KC_BSPC)
 #define CTL_BS CTL_T(KC_BSPC)
-#define FCTL LCTL_T(KC_F2)
-#define CTLGO RCTL_T(KC_ENT)
+#define FGUI LGUI_T(KC_F2)
+#define GUIGO RGUI_T(KC_ENT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QW] = LAYOUT(
          // KC_GRV,  KC_Q, KC_W, KC_E, KC_R,    KC_T,                          KC_Y,   KC_U,   KC_I,    KC_O,     KC_P,    KC_BSLS,
          KC_GRV,  KC_Q, KC_W, KC_E, KC_R,    KC_T,                          KC_Y,   KC_U,   KC_I,    KC_O,     KC_P,    KC_LBRC,
-         GUI_ESC, KC_A, KC_S, KC_D, KC_F,    KC_G,                          KC_H,   KC_J,   KC_K,    KC_L,     KC_SCLN, GUI_QT,
+         CTL_ESC, KC_A, KC_S, KC_D, KC_F,    KC_G,                          KC_H,   KC_J,   KC_K,    KC_L,     KC_SCLN, CTL_QT,
  KC_TAB,          KC_Z, KC_X, KC_C, KC_V,    KC_B,    KC_PAUSE,    KC_2,    KC_N,   KC_M,   KC_COMM, KC_DOT,   KC_SLSH,        KC_MINS,
-                              FCTL, LW_BSP,  SFT_SPC, KC_LALT,     KC_RALT, SFT_BSP,FN_SPC, CTLGO,
+                              FGUI, LW_BSP,  SFT_SPC, KC_LALT,     KC_RALT, SFT_BSP,FN_SPC, GUIGO,
                            // FGUI, LW_BSP,  SFT_SPC, KC_LALT,     KC_RALT, SFT_BSP,FN_SPC, GUIGO,
                                     KC_LEAD, FN_SPC,  KC_3,        KC_4,    KC_5,   M6
   ),
