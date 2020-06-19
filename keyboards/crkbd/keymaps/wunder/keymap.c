@@ -43,20 +43,22 @@ enum custom_keycodes {
 #define LW_BSP LT(_LW, KC_BSPC)
 #define FGUI GUI_T(KC_F2)
 #define GUIGO GUI_T(KC_ENT)
-
+#define GUITAB LGUI_T(KC_TAB)
+#define SFT_BSP SFT_T(KC_BSPC)
+#define ALT_MNS ALT_T(KC_MINS)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QW] = LAYOUT( \
-    KC_TAB,  KC_Q,  KC_W,  KC_E,  KC_R,  KC_T,                       KC_Y,  KC_U,  KC_I,   KC_O,   KC_P,    KC_BSLS,\
+    KC_GRV,  KC_Q,  KC_W,  KC_E,  KC_R,  KC_T,                       KC_Y,  KC_U,  KC_I,   KC_O,   KC_P,    KC_LBRC,\
     CTL_ESC, KC_A,  KC_S,  KC_D,  KC_F,  KC_G,                       KC_H,  KC_J,  KC_K,   KC_L,   KC_SCLN, CTL_QT,\
-    SFT_MEH, KC_Z,  KC_X,  KC_C,  KC_V,  KC_B,                       KC_N,  KC_M, KC_COMM, KC_DOT, KC_SLSH, SFT_MIN,\
-                                  FGUI,  LW_BSP, KC_LEAD,   KC_LALT, FN_SPC,GUIGO \
+    KC_BSLS, KC_Z,  KC_X,  KC_C,  KC_V,  KC_B,                       KC_N,  KC_M, KC_COMM, KC_DOT, KC_SLSH, ALT_MNS,\
+                                  GUITAB,  LW_BSP, KC_LEAD, SFT_BSP, FN_SPC,GUIGO \
   ),
 
   [_FN] = LAYOUT( \
-    KC_CAPS, KC_BTN4, KC_BTN3, _______, M1_R,    M2_R,                       KC_HOME, KC_END,  KC_LBRC, KC_RBRC, _______, KC_DEL,\
-    _______, _______, _______, _______, _______, _______,                    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,\
-    _______, M1,      M2,      M3,      M4,      M5,                         KC_PGUP, KC_PGDN, _______, _______, _______, _______,\
+    KC_CAPS, KC_BTN4, _______, _______, _______, M1_R,                       KC_HOME, KC_END,  KC_LBRC, KC_RBRC, _______, KC_DEL,\
+    _______, _______, _______, _______, _______, M2_R,                       KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,\
+    _______, M1,      M2,      M3,      M4,      M5,                         M1,      M2,      KC_PGUP, KC_PGDN, M5,      _______,\
                                         _______, _______,_______,   _______, _______,_______ \
   ),
 
@@ -82,6 +84,15 @@ void matrix_scan_user(void) {
     leading = false;
     leader_end();
 
+    SEQ_ONE_KEY(KC_LBRC) {
+      SEND_STRING(SS_TAP(X_RBRC));
+    }
+    SEQ_TWO_KEYS(KC_LBRC, KC_LBRC) {
+      register_code(KC_LSFT);
+      register_code(KC_RBRC);
+      unregister_code(KC_RBRC);
+      unregister_code(KC_LSFT);
+    }
     SEQ_ONE_KEY(KC_J) {
       // Anything you can do in a macro.
       SEND_STRING(SS_DOWN(X_LSHIFT) SS_DOWN(X_RSHIFT) SS_UP(X_LSHIFT) SS_UP(X_RSHIFT));

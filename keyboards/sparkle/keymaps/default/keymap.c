@@ -36,7 +36,7 @@ enum custom_keycodes {
 #define FN_BSP LT(_FN, KC_BSPC)
 #define CTL_ESC LCTL_T(KC_ESC)
 #define GUI_MEH LGUI_T(KC_TAB)
-#define SFT_SPC SFT_T(KC_SPC)
+#define SFT_F SFT_T(KC_F2)
 #define SFT_BSP SFT_T(KC_BSPC)
 /* #define SFT_MIN MT(MOD_RSFT, KC_MINS) */
 #define GUI_MIN RGUI_T(KC_MINS)
@@ -45,24 +45,23 @@ enum custom_keycodes {
 #define LW_SPC LT(_LW, KC_SPC)
 #define LW_BSP LT(_LW, KC_BSPC)
 #define CTL_BS CTL_T(KC_BSPC)
-#define FGUI LGUI_T(KC_F2)
+#define GUITAB LGUI_T(KC_TAB)
 #define GUIGO RGUI_T(KC_ENT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QW] = LAYOUT(
          // KC_GRV,  KC_Q, KC_W, KC_E, KC_R,    KC_T,                          KC_Y,   KC_U,   KC_I,    KC_O,     KC_P,    KC_BSLS,
-         KC_GRV,  KC_Q, KC_W, KC_E, KC_R,    KC_T,                          KC_Y,   KC_U,   KC_I,    KC_O,     KC_P,    KC_LBRC,
-         CTL_ESC, KC_A, KC_S, KC_D, KC_F,    KC_G,                          KC_H,   KC_J,   KC_K,    KC_L,     KC_SCLN, CTL_QT,
- KC_TAB,          KC_Z, KC_X, KC_C, KC_V,    KC_B,    KC_PAUSE,    KC_2,    KC_N,   KC_M,   KC_COMM, KC_DOT,   KC_SLSH,        KC_MINS,
-                              FGUI, LW_BSP,  SFT_SPC, KC_LALT,     KC_RALT, SFT_BSP,FN_SPC, GUIGO,
-                           // FGUI, LW_BSP,  SFT_SPC, KC_LALT,     KC_RALT, SFT_BSP,FN_SPC, GUIGO,
-                                    KC_LEAD, FN_SPC,  KC_3,        KC_4,    KC_5,   M6
+         KC_GRV,  KC_Q, KC_W, KC_E,   KC_R,    KC_T,                          KC_Y,   KC_U,   KC_I,    KC_O,     KC_P,    KC_LBRC,
+         CTL_ESC, KC_A, KC_S, KC_D,   KC_F,    KC_G,                          KC_H,   KC_J,   KC_K,    KC_L,     KC_SCLN, CTL_QT,
+ KC_BSLS,         KC_Z, KC_X, KC_C,   KC_V,    KC_B,   KC_PAUSE,    KC_2,    KC_N,   KC_M,   KC_COMM, KC_DOT,   KC_SLSH,        KC_MINS,
+                              GUITAB, LW_BSP,  SFT_F,  KC_LALT,     KC_RALT, SFT_BSP,FN_SPC, GUIGO,
+                                      KC_LEAD, FN_SPC, KC_BTN3,     KC_4,    KC_5,   M6
   ),
 
   [_FN] = LAYOUT(
-         KC_CAPS, KC_BTN4, KC_P7, KC_P8,   KC_P9,   M1_PLY,                        KC_HOME, KC_END,  _______, _______, _______, KC_RBRC,
-         _______, KC_PDOT, KC_P4, KC_P5,   KC_P6,   M2_PLY,                        KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, KC_DEL,
+         KC_CAPS, KC_BTN4, KC_P7, KC_P8,   KC_P9,   M1_PLY,                        KC_HOME, KC_END,  _______, _______, _______, KC_DEL,
+         _______, KC_PDOT, KC_P4, KC_P5,   KC_P6,   M2_PLY,                        KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
  _______,         KC_P0,   KC_P1, KC_P2,   KC_P3,   KC_NLCK, KC_1,        KC_2,    M1,      M2,      KC_PGUP, KC_PGDN, M5,             KC_BSLS,
                                   _______, _______, _______, _______,     _______, _______, _______, _______,
                                            _______, _______, _______,     _______, _______, _______
@@ -95,6 +94,15 @@ void matrix_scan_user(void) {
     SEQ_ONE_KEY(KC_J) {
       // Anything you can do in a macro.
       /* SEND_STRING(SS_DOWN(X_LSHIFT) SS_DOWN(X_LALT) SS_UP(X_LSHIFT) SS_UP(X_LALT)); */
+    }
+    SEQ_ONE_KEY(KC_LBRC) {
+      SEND_STRING(SS_TAP(X_RBRC));
+    }
+    SEQ_TWO_KEYS(KC_LBRC, KC_LBRC) {
+      register_code(KC_LSFT);
+      register_code(KC_RBRC);
+      unregister_code(KC_RBRC);
+      unregister_code(KC_LSFT);
     }
     SEQ_TWO_KEYS(KC_D, KC_E) {
       /* SEND_STRING("docker exe"SS_TAP(X_TAB)"-it eva"SS_TAP(X_TAB)"backe"SS_TAP(X_TAB)"sh"SS_TAP(X_ENTER)"tail -f -n 1000 $LOG_PORTAL"SS_TAP(X_ENTER)); */
