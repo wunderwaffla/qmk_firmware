@@ -1,0 +1,9 @@
+#pragma once
+
+#define LEADER_TIMEOUT 300
+#define LEADER_PER_KEY_TIMING
+
+#define PERMISSIVE_HOLD
+#define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_TERM 150
+
