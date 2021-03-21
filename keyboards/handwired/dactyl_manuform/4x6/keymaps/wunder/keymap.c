@@ -56,14 +56,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_BSLS, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,              KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH, KC_MINS,
                        KC_PGUP, KC_PGDN,                                      KC_LBRC, KC_RBRC,
                                          TGUI,    LW_BSP,            FN_SPC,  GUIGO,
-                                         KC_LEAD, SFT_F,             SFT_BSP, M6,
+                                         KC_LEAD, SFT_F,             SFT_BSP, M4,
                                          KC_PAUS, KC_RALT,           KC_LALT, _______
   ),
 
   [_FN] = LAYOUT(
-     KC_CAPS, KC_BTN4, KC_P7,   KC_P8,   KC_P9,   M1_PLY,            KC_HOME, KC_END,  KC_LBRC, KC_RBRC,  _______, KC_DEL,
-     _______, KC_PDOT, KC_P4,   KC_P5,   KC_P6,   M2_PLY,            KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,  _______, _______,
-     _______, KC_P0,   KC_P1,   KC_P2,   KC_P3,   KC_NLCK,           M1,      M2,      M3,      M4,       M5,      _______,
+     KC_CAPS, _______, _______, _______, KC_WBAK, KC_WFWD,           M1_PLY,  M2_PLY,  KC_HOME, KC_END,  _______, KC_RBRC,
+     _______, _______, _______, _______, _______, _______,           KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_DEL,  _______,
+     _______, _______, _______, _______, _______, _______,           M1,      M2,      KC_PGUP, KC_PGDN, _______, _______,
                        _______, _______,                                               _______, _______,
                                          _______, _______,           _______, _______,
                                          _______, _______,           _______, _______,
@@ -71,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_LW] = LAYOUT(
-     _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,           KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,  KC_PLUS,
+     KC_ENT,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,           KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,  KC_PLUS,
      _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,              KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_EQL,
      KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,             KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,   KC_F12,
                        _______, _______,                                               _______, _______,
@@ -81,9 +81,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_RS] = LAYOUT(
-     _______, _______, _______, _______, M_STOP,  M1_REC,            KC_INS,  _______, _______, _______, KC_SLCK, KC_PAUS,
-     _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, M2_REC,            _______, _______, _______, _______, _______, _______,
-     RESET,   _______, _______, _______, _______, KC_PSCR,           _______, _______, _______, _______, _______, _______,
+     _______, _______, _______, _______, _______, M_STOP,            M1_REC,  M2_REC,  _______, _______, KC_SLCK, KC_PAUS,
+     _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, _______,           _______, _______, _______, _______, _______, _______,
+     RESET,   _______, _______, _______, _______, KC_PSCR,           KC_INS,  _______, _______, _______, _______, _______,
                        _______, _______,                                               _______, _______,
                                          _______, _______,           _______, _______,
                                          _______, _______,           _______, _______,
@@ -97,13 +97,9 @@ void matrix_scan_user(void) {
   LEADER_DICTIONARY() {
     leading = false;
     leader_end();
-
     SEQ_ONE_KEY(KC_J) {
       // Anything you can do in a macro.
       /* SEND_STRING(SS_DOWN(X_LSHIFT) SS_DOWN(X_LALT) SS_UP(X_LSHIFT) SS_UP(X_LALT)); */
-    }
-    SEQ_ONE_KEY(KC_LBRC) {
-      SEND_STRING(SS_TAP(X_RBRC));
     }
     SEQ_TWO_KEYS(KC_LBRC, KC_LBRC) {
       register_code(KC_LSFT);
@@ -113,7 +109,7 @@ void matrix_scan_user(void) {
     }
     SEQ_TWO_KEYS(KC_D, KC_E) {
       /* SEND_STRING("docker exe"SS_TAP(X_TAB)"-it eva"SS_TAP(X_TAB)"backe"SS_TAP(X_TAB)"sh"SS_TAP(X_ENTER)"tail -f -n 1000 $LOG_PORTAL"SS_TAP(X_ENTER)); */
-      SEND_STRING("docker exe"SS_TAP(X_TAB)"-it $(dock"SS_TAP(X_TAB)" ps --filter='name=evalink_backend' --format='{{.Names}}') sh"SS_TAP(X_ENTER)"tail -f -n 1000 $LOG_PORTAL"SS_TAP(X_ENTER));
+      SEND_STRING("docker logs -f $(dock"SS_TAP(X_TAB)" ps --filter='name=evalink_backend' --format='{{.Names}}') ");
     }
     SEQ_TWO_KEYS(KC_D, KC_P) {
       SEND_STRING("docker exe"SS_TAP(X_TAB)"-it $(dock"SS_TAP(X_TAB)" ps --filter='name=evalink_postgres' --format='{{.Names}}') bash"SS_TAP(X_ENTER)"psql -U postgres -d evalink -p 5132"SS_TAP(X_ENTER)"\\x auto"SS_TAP(X_ENTER));
@@ -121,18 +117,6 @@ void matrix_scan_user(void) {
     SEQ_TWO_KEYS(KC_E, KC_P) {
       SEND_STRING("@evalink.test"SS_TAP(X_TAB)""SS_TAP(X_ENTER));
       /* SEND_STRING(SS_LCTRL("a")SS_LCTRL("c")); */
-    }
-    SEQ_TWO_KEYS(KC_T, KC_P) {
-      SEND_STRING("ssh -L 2050:localhost:5132 ");
-    }
-    SEQ_THREE_KEYS(KC_D, KC_D, KC_S) {
-      /* SEND_STRING("https://start.duckduckgo.com"SS_TAP(X_ENTER)); */
-    }
-    SEQ_TWO_KEYS(KC_A, KC_S) {
-      register_code(KC_LGUI);
-      register_code(KC_S);
-      unregister_code(KC_S);
-      unregister_code(KC_LGUI);
     }
   }
 }
@@ -158,13 +142,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(""SS_TAP(X_ENTER));
         return false; break;
       case M4:
-        SEND_STRING(""SS_TAP(X_ENTER));
-        return false; break;
-      case M5:
-        SEND_STRING(SS_LCTRL(SS_LSFT(SS_TAP(X_P)))SS_TAP(X_F));
-        return false; break;
-      case M6:
-        SEND_STRING(SS_DOWN(X_LSHIFT) SS_DOWN(X_RSHIFT) SS_UP(X_LSHIFT) SS_UP(X_RSHIFT));
+        SEND_STRING(SS_DOWN(X_LCTRL) SS_DOWN(X_RCTRL) SS_UP(X_LCTRL) SS_UP(X_RCTRL));
         return false; break;
     }
   }

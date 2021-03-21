@@ -31,9 +31,10 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 
 // Defines names for use in layer keycodes and the keymap
 enum Layer_names {
-_Base,
+_QW,
 _FN,
-_Lyr2
+_LW,
+_RS
 };
 
 __attribute__((weak))
@@ -45,17 +46,20 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 static void render_status(void) {
     //Host Keyboard Layer Status
     oled_set_cursor(0,10);
-    oled_write_P(PSTR("Lyr: "), false);
+    oled_write_P(PSTR("wundr"), false);
 
     switch (get_highest_layer(layer_state)) {
-        case _Base:
-            oled_write_P(PSTR("Base\n"), false);
+        case _QW:
+            oled_write_P(PSTR("-----\n"), false);
             break;
         case _FN:
             oled_write_P(PSTR("FN\n"), false);
             break;
-        case _Lyr2:
-            oled_write_P(PSTR("Lyr2\n"), false);
+        case _LW:
+            oled_write_P(PSTR("LW\n"), false);
+            break;
+        case _RS:
+            oled_write_P(PSTR("RS\n"), false);
             break;
         default:
             // Or use the write_ln shortcut over adding '\n' to the end of your string
@@ -64,7 +68,7 @@ static void render_status(void) {
     // Host Keyboard LED Status
     led_t led_state = host_keyboard_led_state();
     oled_set_cursor(0,12);
-    oled_write_P(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
+    oled_write_P(led_state.caps_lock ? PSTR("CAPS") : PSTR("    "), false);
 
 }
 
