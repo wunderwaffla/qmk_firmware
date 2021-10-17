@@ -38,7 +38,8 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QW] = LAYOUT(
     KC_GRV,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, M4,
-    CTL_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, CTL_QT,
+    /* CTL_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, CTL_QT, */
+    CTL_ESC,  LALT_T(KC_A), LGUI_T(KC_S), LCTL_T(KC_D), LSFT_T(KC_F), KC_G,    KC_H, RSFT_T(KC_J), RCTL_T(KC_K), LGUI_T(KC_L), RALT_T(KC_SCLN), CTL_QT,
     SFT_F,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SFT_MIN,
     _______,  KC_RALT, GUITAB,  _______, LW_BSP,  FN_SPC,  GUIGO,   KC_LEAD, KC_PAUSE,_______
   ),
@@ -82,11 +83,13 @@ void matrix_scan_user(void) {
       unregister_code(KC_LSFT);
     }
     SEQ_TWO_KEYS(KC_D, KC_E) {
-      /* SEND_STRING("docker exe"SS_TAP(X_TAB)"-it eva"SS_TAP(X_TAB)"backe"SS_TAP(X_TAB)"sh"SS_TAP(X_ENTER)"tail -f -n 1000 $LOG_PORTAL"SS_TAP(X_ENTER)); */
       SEND_STRING("docker logs -f $(dock"SS_TAP(X_TAB)" ps --filter='name=evalink_backend' --format='{{.Names}}') ");
     }
     SEQ_TWO_KEYS(KC_D, KC_P) {
       SEND_STRING("docker exe"SS_TAP(X_TAB)"-it $(dock"SS_TAP(X_TAB)" ps --filter='name=evalink_postgres' --format='{{.Names}}') bash"SS_TAP(X_ENTER)"psql -U postgres -d evalink -p 5132"SS_TAP(X_ENTER)"\\x auto"SS_TAP(X_ENTER));
+    }
+    SEQ_TWO_KEYS(KC_G, KC_P) {
+      SEND_STRING("git push --set-upstream origin $(git branch --show-current)"SS_TAP(X_TAB));
     }
     SEQ_TWO_KEYS(KC_E, KC_P) {
       SEND_STRING("@evalink.test"SS_TAP(X_TAB)""SS_TAP(X_ENTER));
