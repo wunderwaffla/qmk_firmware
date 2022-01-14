@@ -87,17 +87,17 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         /* case LCTL_T(KC_D): */
         /*     return TAPPING_TERM - 50; */
         case RSFT_T(KC_J):
-            return TAPPING_TERM - 30;
+            return TAPPING_TERM - 20;
         case LSFT_T(KC_F):
-            return TAPPING_TERM - 30;
+            return TAPPING_TERM - 20;
         case RGUI_T(KC_L):
-            return TAPPING_TERM + 30;
+            return TAPPING_TERM + 50;
         case LGUI_T(KC_S):
-            return TAPPING_TERM + 30;
+            return TAPPING_TERM + 50;
         case LALT_T(KC_A):
-            return TAPPING_TERM + 30;
+            return TAPPING_TERM + 50;
         case RALT_T(KC_SCLN):
-            return TAPPING_TERM + 30;
+            return TAPPING_TERM + 50;
         default:
             return TAPPING_TERM;
     }
