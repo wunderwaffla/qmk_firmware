@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* CTL_ESC, KC_A,  KC_S,  KC_D,  KC_F,  KC_G,                       KC_H,  KC_J,  KC_K,   KC_L,   KC_SCLN, CTL_QT,\ */
     KC_ESC, LGUI_T(KC_A), LALT_T(KC_S), LCTL_T(KC_D), LSFT_T(KC_F), KC_G,    KC_H, RSFT_T(KC_J), RCTL_T(KC_K), RALT_T(KC_L), RGUI_T(KC_SCLN), KC_QUOT,\
     KC_BSLS, KC_Z,  KC_X,  KC_C,  KC_V,  KC_B,                       KC_N,  KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_MINS,\
-                                  FROW,  NAV, KC_PAUS,      SFT_BSP, NUM, SYS \
+                                  FROW,  NAV, KC_PAUS,      KC_LEAD, NUM, SYS \
   ),
 
   [_NAV] = LAYOUT( \
@@ -82,58 +82,66 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        /* case RCTL_T(KC_K): */
-        /*     return TAPPING_TERM - 50; */
-        /* case LCTL_T(KC_D): */
-        /*     return TAPPING_TERM - 50; */
         case RSFT_T(KC_J):
-            return TAPPING_TERM - 20;
+            return TAPPING_TERM - 30;
         case LSFT_T(KC_F):
-            return TAPPING_TERM - 20;
+            return TAPPING_TERM - 30;
         case RGUI_T(KC_L):
             return TAPPING_TERM + 50;
         case LGUI_T(KC_S):
             return TAPPING_TERM + 50;
         case LALT_T(KC_A):
-            return TAPPING_TERM + 50;
+            return TAPPING_TERM + 60;
         case RALT_T(KC_SCLN):
-            return TAPPING_TERM + 50;
+            return TAPPING_TERM + 60;
         default:
             return TAPPING_TERM;
     }
 }
 
-// LEADER_EXTERNS();
+LEADER_EXTERNS();
 
 void matrix_scan_user(void) {
-//   LEADER_DICTIONARY() {
-//     leading = false;
-//     leader_end();
-//     SEQ_ONE_KEY(KC_RBRC) {
-//       /* DYN_MACRO_PLAY1; */
-//       /* register_code(DYN_MACRO_PLAY1); */
-//       /* unregister_code(DYN_MACRO_PLAY1); */
-//     }
-//     SEQ_TWO_KEYS(KC_RBRC, KC_RBRC) {
-//       /* SEND_STRING(SS_TAP(DYN_REC_START1)); */
-//       /* register_code(DYN_REC_START1); */
-//       /* unregister_code(DYN_REC_START1); */
-//     }
-//     SEQ_THREE_KEYS(KC_RBRC, KC_RBRC, KC_RBRC) {
-//       /* SEND_STRING(SS_TAP(DYN_REC_STOP)); */
-//       /* register_code(DYN_REC_STOP); */
-//       /* unregister_code(DYN_REC_STOP); */
-//     }
-//     SEQ_TWO_KEYS(KC_D, KC_E) {
-//       SEND_STRING("docker logs -f $(dock"SS_TAP(X_TAB)" ps --filter='name=evalink_backend' --format='{{.Names}}') ");
-//     }
-//     SEQ_TWO_KEYS(KC_D, KC_P) {
-//       SEND_STRING("docker exe"SS_TAP(X_TAB)"-it $(dock"SS_TAP(X_TAB)" ps --filter='name=evalink_postgres' --format='{{.Names}}') bash"SS_TAP(X_ENTER)"psql -U postgres -d evalink -p 5132"SS_TAP(X_ENTER)"\\x auto"SS_TAP(X_ENTER));
-//     }
-//     SEQ_TWO_KEYS(KC_G, KC_P) {
-//       SEND_STRING("git push --set-upstream origin $(git branch --show-current)"SS_TAP(X_TAB));
-//     }
-//   }
+   LEADER_DICTIONARY() {
+     leading = false;
+     leader_end();
+     SEQ_ONE_KEY(KC_RBRC) {
+       /* DYN_MACRO_PLAY1; */
+       /* register_code(DYN_MACRO_PLAY1); */
+       /* unregister_code(DYN_MACRO_PLAY1); */
+     }
+     SEQ_TWO_KEYS(KC_RBRC, KC_RBRC) {
+       /* SEND_STRING(SS_TAP(DYN_REC_START1)); */
+       /* register_code(DYN_REC_START1); */
+       /* unregister_code(DYN_REC_START1); */
+     }
+     SEQ_THREE_KEYS(KC_RBRC, KC_RBRC, KC_RBRC) {
+       /* SEND_STRING(SS_TAP(DYN_REC_STOP)); */
+       /* register_code(DYN_REC_STOP); */
+       /* unregister_code(DYN_REC_STOP); */
+     }
+     SEQ_TWO_KEYS(KC_L, KC_C) {
+       SEND_STRING("code ."SS_TAP(X_ENTER));
+     }
+     SEQ_TWO_KEYS(KC_G, KC_H) {
+       SEND_STRING("git push --set-upstream origin $(git branch --show-current)"SS_TAP(X_TAB));
+     }
+     SEQ_TWO_KEYS(KC_G, KC_L) {
+       SEND_STRING("git pull"SS_TAP(X_ENTER));
+     }
+     SEQ_THREE_KEYS(KC_G, KC_H, KC_F) {
+       SEND_STRING("git push -fu");
+     }
+     SEQ_TWO_KEYS(KC_W, KC_P) {
+       SEND_STRING("/current time"SS_TAP(X_ENTER)" #p ");
+     }
+     SEQ_TWO_KEYS(KC_W, KC_T) {
+       SEND_STRING("/current time"SS_TAP(X_ENTER)" ");
+     }
+     SEQ_TWO_KEYS(KC_W, KC_H) {
+       SEND_STRING(":tophat: ");
+     }
+   }
 }
 
 uint32_t layer_state_set_user(uint32_t state) {
@@ -144,7 +152,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   /* if (!process_record_dynamic_macro(keycode, record)) { */
   /*   return false; */
   /* } */
-
   if (record->event.pressed) {
     switch(keycode) {
       case M1:
@@ -157,8 +164,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(""SS_TAP(X_ENTER));
         return false; break;
       case M4:
-        /* SEND_STRING(SS_DOWN(X_LCTRL) SS_DOWN(X_RCTRL) SS_UP(X_LCTRL) SS_UP(X_RCTRL)); */
-        SEND_STRING(SS_DOWN(X_LCTRL) SS_DOWN(X_LALT) SS_DOWN(X_K) SS_UP(X_K) SS_UP(X_LCTRL) SS_UP(X_LALT));
+        SEND_STRING(SS_DOWN(X_LSFT) SS_DOWN(X_RSFT) SS_UP(X_LSFT) SS_UP(X_RSFT));
+        /* SEND_STRING(SS_DOWN(X_LCTRL) SS_DOWN(X_LALT) SS_DOWN(X_K) SS_UP(X_K) SS_UP(X_LCTRL) SS_UP(X_LALT)); */
         return false; break;
       case M5:
         SEND_STRING(SS_TAP(X_F3) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_F3));

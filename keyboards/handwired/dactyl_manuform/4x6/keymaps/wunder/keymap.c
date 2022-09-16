@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_BSLS, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                               KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
                       KC_PGUP, KC_PGDN,                                                                KC_LBRC, KC_RBRC,
                                         FROW,    NAV,                                NUM,     SYS,
-                                                 _______, KC_LEAD,          KC_PAUS, _______,
+                                                 _______, KC_PAUS,          KC_LEAD, _______,
                                                  _______, _______,          _______, _______
   ),
 
@@ -86,6 +86,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                  _______, _______,          _______, _______
   ),
 
+
+  [_SYS] = LAYOUT(
+    _______, _______, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,                            _______, _______, _______, _______, _______, _______,
+    _______, _______, KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS,                            _______, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI, _______,
+    _______, _______, KC_EXLM, KC_AT,   KC_HASH, KC_DOT,                             _______, _______, _______, _______, _______, _______,
+                      _______, _______,                                                                _______, _______,
+                                        _______, _______,                            _______, _______,
+                                                 _______, _______,          _______, _______,
+                                                 _______, _______,          _______, _______
+  ),
+
   [_RS] = LAYOUT(
     _______, _______, _______, _______, _______, _______,                            M5,      M6,      _______, _______, _______, _______,\
     _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, _______,                            _______, _______, _______, _______, _______, _______,\
@@ -100,22 +111,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        /* case RCTL_T(KC_K): */
-        /*     return TAPPING_TERM - 50; */
-        /* case LCTL_T(KC_D): */
-        /*     return TAPPING_TERM - 50; */
         case RSFT_T(KC_J):
-            return TAPPING_TERM - 20;
+            return TAPPING_TERM - 30;
         case LSFT_T(KC_F):
-            return TAPPING_TERM - 20;
+            return TAPPING_TERM - 30;
         case RGUI_T(KC_L):
             return TAPPING_TERM + 50;
         case LGUI_T(KC_S):
             return TAPPING_TERM + 50;
         case LALT_T(KC_A):
-            return TAPPING_TERM + 50;
+            return TAPPING_TERM + 60;
         case RALT_T(KC_SCLN):
-            return TAPPING_TERM + 50;
+            return TAPPING_TERM + 60;
         default:
             return TAPPING_TERM;
     }
@@ -142,14 +149,26 @@ void matrix_scan_user(void) {
        /* register_code(DYN_REC_STOP); */
        /* unregister_code(DYN_REC_STOP); */
      }
-     SEQ_TWO_KEYS(KC_D, KC_E) {
-       SEND_STRING("docker logs -f $(dock"SS_TAP(X_TAB)" ps --filter='name=evalink_backend' --format='{{.Names}}') ");
+     SEQ_TWO_KEYS(KC_L, KC_C) {
+       SEND_STRING("code ."SS_TAP(X_ENTER));
      }
-     SEQ_TWO_KEYS(KC_D, KC_P) {
-       SEND_STRING("docker exe"SS_TAP(X_TAB)"-it $(dock"SS_TAP(X_TAB)" ps --filter='name=evalink_postgres' --format='{{.Names}}') bash"SS_TAP(X_ENTER)"psql -U postgres -d evalink -p 5132"SS_TAP(X_ENTER)"\\x auto"SS_TAP(X_ENTER));
-     }
-     SEQ_TWO_KEYS(KC_G, KC_P) {
+     SEQ_TWO_KEYS(KC_G, KC_H) {
        SEND_STRING("git push --set-upstream origin $(git branch --show-current)"SS_TAP(X_TAB));
+     }
+     SEQ_TWO_KEYS(KC_G, KC_L) {
+       SEND_STRING("git pull"SS_TAP(X_ENTER));
+     }
+     SEQ_THREE_KEYS(KC_G, KC_H, KC_F) {
+       SEND_STRING("git push -fu");
+     }
+     SEQ_TWO_KEYS(KC_W, KC_P) {
+       SEND_STRING("/current time"SS_TAP(X_ENTER)" #p ");
+     }
+     SEQ_TWO_KEYS(KC_W, KC_T) {
+       SEND_STRING("/current time"SS_TAP(X_ENTER)" ");
+     }
+     SEQ_TWO_KEYS(KC_W, KC_H) {
+       SEND_STRING(":tophat: ");
      }
    }
 }
@@ -175,8 +194,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(""SS_TAP(X_ENTER));
         return false; break;
       case M4:
-        /* SEND_STRING(SS_DOWN(X_LCTRL) SS_DOWN(X_RCTRL) SS_UP(X_LCTRL) SS_UP(X_RCTRL)); */
-        SEND_STRING(SS_DOWN(X_LCTRL) SS_DOWN(X_LALT) SS_DOWN(X_K) SS_UP(X_K) SS_UP(X_LCTRL) SS_UP(X_LALT));
+        SEND_STRING(SS_DOWN(X_LSFT) SS_DOWN(X_RSFT) SS_UP(X_LSFT) SS_UP(X_RSFT));
+        /* SEND_STRING(SS_DOWN(X_LCTRL) SS_DOWN(X_LALT) SS_DOWN(X_K) SS_UP(X_K) SS_UP(X_LCTRL) SS_UP(X_LALT)); */
         return false; break;
       case M5:
         SEND_STRING(SS_TAP(X_F3) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_F3));

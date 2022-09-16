@@ -60,7 +60,7 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [_QW] = {
-  { KC_F1,   M5,      ______, ______, ______, },
+  { KC_F1,   M5,      ______, ______, M6, },
   { M7,      M4,      KC_DEL, M1_R,   M2_R,   },
   { CTL_ESC, SFT_MEH, LOLT,   KC_S,   M1    },
   { M3,      ______,  ______, FGUI,   M2,     },
@@ -127,7 +127,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           }
       }
       break;
+    // copy-paste with one button
     case M6:
+      if (record->event.pressed) {
+          SEND_STRING(SS_LCTRL("c"));
+          macro_timer = timer_read();
+      } else {
+          if (timer_elapsed(macro_timer) > 150) {
+              SEND_STRING(SS_LCTRL("v"));
+          }
+      }
       break;
     // remove empty space to the next item
     case M7:

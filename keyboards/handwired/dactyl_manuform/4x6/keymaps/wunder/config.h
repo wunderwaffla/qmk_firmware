@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
 #define TAPPING_FORCE_HOLD
 
-#define TAP_CODE_DELAY 50
+#define TAP_CODE_DELAY 10
 
 
 /* Select hand configuration */
